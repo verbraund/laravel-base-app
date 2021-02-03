@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class NewsSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Media\News\News::factory(120)->create();
+        \App\Models\Admin::factory()->create();
     }
 }

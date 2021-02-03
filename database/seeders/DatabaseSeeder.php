@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Media\News\News::factory(120)->create();
+        $this->call([
+            AdminSeeder::class,
+            NewsSeeder::class
+        ]);
     }
 }
