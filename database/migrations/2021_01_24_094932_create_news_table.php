@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
@@ -14,6 +15,7 @@ class CreateNewsTable extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('title');
             $table->string('slug');
@@ -22,6 +24,9 @@ class CreateNewsTable extends Migration
             $table->dateTime('published_at');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE `news` ADD FULLTEXT INDEX news (title,slug,description,text)');
+
     }
 
     /**
@@ -31,6 +36,9 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
+        Schema::table('news', function($table) {
+            $table->dropIndex('news');
+        });
         Schema::dropIfExists('news');
     }
 }

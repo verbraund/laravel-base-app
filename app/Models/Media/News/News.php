@@ -2,12 +2,15 @@
 
 namespace App\Models\Media\News;
 
+use App\Extensions\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Searchable;
+
 
     protected $fillable = [
         'title',
@@ -19,5 +22,12 @@ class News extends Model
 
     public $sortable = [
         'id','title'
+    ];
+
+    protected $searchable = [
+        'title',
+        'slug',
+        'description',
+        'text',
     ];
 }

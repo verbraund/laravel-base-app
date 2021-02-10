@@ -9,7 +9,6 @@ export default function LoginFormTfa({setTfa}){
     const qr = auth.getTfaQrCode();
 
     const submitHandler = () => {
-        console.log(code);
         if(code.current.value.length > 0){
             auth.tfa(code.current.value).then(isAuthenticated => {
                 if(isAuthenticated && auth.isEnabledTfa()){

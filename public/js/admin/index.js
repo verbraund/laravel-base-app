@@ -69980,6 +69980,155 @@ function MenuItemDropDown(_ref) {
 
 /***/ }),
 
+/***/ "./resources/assets/admin/js/components/Pagination.js":
+/*!************************************************************!*\
+  !*** ./resources/assets/admin/js/components/Pagination.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pagination; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PaginationItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaginationItem */ "./resources/assets/admin/js/components/PaginationItem.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function Pagination(_ref) {
+  var current = _ref.current,
+      count = _ref.count,
+      rangeCount = _ref.rangeCount,
+      setPage = _ref.setPage;
+
+  var getRange = function getRange(r) {
+    var s = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    return _toConsumableArray(Array(r).keys()).map(function (i) {
+      return i + s;
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "paginate"
+  }, current > rangeCount + 1 && getRange(current > rangeCount + rangeCount ? rangeCount : current - rangeCount - 1, 1).map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PaginationItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: p,
+      page: p,
+      setPage: setPage
+    });
+  }), current > rangeCount + rangeCount + 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: 'points'
+  }, ".."), current > 1 && getRange(current > rangeCount ? rangeCount : current - 1, current > rangeCount + 1 ? current - rangeCount : 1).map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PaginationItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: p,
+      page: p,
+      setPage: setPage
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: 'active'
+  }, current), current < count && getRange(count - current > rangeCount ? rangeCount : count - current, current + 1).map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PaginationItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: p,
+      page: p,
+      setPage: setPage
+    });
+  }), current < count - rangeCount - rangeCount - 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: 'points'
+  }, ".."), current < count - rangeCount && getRange(current <= count - rangeCount - rangeCount ? rangeCount : count - current - rangeCount, current <= count - rangeCount - rangeCount ? count - rangeCount + 1 : current + rangeCount + 1).map(function (p) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PaginationItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: p,
+      page: p,
+      setPage: setPage
+    });
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin/js/components/PaginationItem.js":
+/*!****************************************************************!*\
+  !*** ./resources/assets/admin/js/components/PaginationItem.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PaginationItem; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function PaginationItem(_ref) {
+  var page = _ref.page,
+      setPage = _ref.setPage;
+
+  var setCurrentPage = function setCurrentPage() {
+    setPage(page);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    onClick: setCurrentPage
+  }, page);
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin/js/components/Search.js":
+/*!********************************************************!*\
+  !*** ./resources/assets/admin/js/components/Search.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Search; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Search(_ref) {
+  var searching = _ref.searching,
+      setSearching = _ref.setSearching;
+  var minLength = 3;
+  var delay = 1300;
+  var interval = null;
+
+  var handling = function handling(e) {
+    var s = e.currentTarget.value.trim();
+    if (s.length < minLength && s !== searching) s = '';
+
+    if (String(Number(s)) === s && s.length < minLength || s.length >= minLength || s.length === 0 && s !== searching) {
+      if (interval !== null) clearInterval(interval);
+      interval = setTimeout(function () {
+        if (s !== searching) {
+          setSearching(s);
+        }
+      }, delay);
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: handling,
+    type: "text"
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/assets/admin/js/components/auth/LoginForm.js":
 /*!****************************************************************!*\
   !*** ./resources/assets/admin/js/components/auth/LoginForm.js ***!
@@ -70109,8 +70258,6 @@ function LoginFormTfa(_ref) {
   var qr = auth.getTfaQrCode();
 
   var submitHandler = function submitHandler() {
-    console.log(code);
-
     if (code.current.value.length > 0) {
       auth.tfa(code.current.value).then(function (isAuthenticated) {
         if (isAuthenticated && auth.isEnabledTfa()) {
@@ -70471,6 +70618,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Pagination */ "./resources/assets/admin/js/components/Pagination.js");
+/* harmony import */ var _components_Search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Search */ "./resources/assets/admin/js/components/Search.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -70482,6 +70631,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -70502,7 +70653,24 @@ function News() {
       ascending = _useState6[0],
       setAscending = _useState6[1];
 
-  var getSortFields = function getSortFields() {
+  var firstPage = 1;
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(firstPage),
+      _useState8 = _slicedToArray(_useState7, 2),
+      page = _useState8[0],
+      setPage = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(firstPage),
+      _useState10 = _slicedToArray(_useState9, 2),
+      countPage = _useState10[0],
+      setCountPage = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      searching = _useState12[0],
+      setSearching = _useState12[1];
+
+  var getSortFieldValue = function getSortFieldValue() {
     return (ascending ? '' : '-') + sortable;
   };
 
@@ -70510,21 +70678,39 @@ function News() {
     return function () {
       setSortable(!ascending && fieldName === sortable ? '' : fieldName);
       setAscending(sortable !== fieldName ? true : !ascending);
+      setPage(firstPage);
     };
   };
 
+  var getSearchingFieldValue = function getSearchingFieldValue() {
+    return searching;
+  };
+
+  var setSearchingFieldValue = function setSearchingFieldValue(v) {
+    setSearching(v);
+    setPage(firstPage);
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var params = {};
+    if (getSortFieldValue() !== '') params.sort = getSortFieldValue();
+    if (getSearchingFieldValue() !== '') params.search = getSearchingFieldValue();
+    params.page = page;
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/admin/news', {
-      params: {
-        sort: getSortFields()
-      }
+      params: params
     }).then(function (response) {
-      if (Array.isArray(response.data.data)) setNews(response.data.data);
+      if (Array.isArray(response.data.data)) {
+        setNews(response.data.data);
+        setCountPage(response.data.meta.last_page);
+      }
     });
-  }, [sortable, ascending]);
+  }, [sortable, ascending, page, searching]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "h3"
-  }, "\u041D\u043E\u0432\u043E\u0441\u0442\u0438 ", new Date().getMilliseconds())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+  }, "\u041D\u043E\u0432\u043E\u0441\u0442\u0438 ", new Date().getMilliseconds())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Search__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    searching: searching,
+    setSearching: setSearchingFieldValue
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     onClick: setSortableField('id'),
@@ -70557,7 +70743,12 @@ function News() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fas fa-edit"
     }))));
-  })))));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, countPage > firstPage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    count: countPage,
+    current: page,
+    rangeCount: 2,
+    setPage: setPage
+  })));
 }
 
 /***/ }),

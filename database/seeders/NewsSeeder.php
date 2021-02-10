@@ -13,6 +13,6 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Media\News\News::factory(120)->create();
+        \App\Models\Media\News\News::factory(224)->create();
     }
 }

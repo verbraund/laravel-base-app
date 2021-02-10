@@ -15668,6 +15668,35 @@ body,
   color: #d1d1d1;
 }
 
+.paginate {
+  text-align: center;
+}
+
+.paginate li {
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.paginate li.active {
+  background-color: #6a6a6a;
+  color: #f2f2f2;
+  border-color: #454545;
+  cursor: default;
+}
+
+.paginate li:hover {
+  background-color: #724f61;
+  color: #f2f2f2;
+  border-color: #452b38;
+}
+
+.paginate li.points {
+  cursor: default;
+}
+
 .app {
   display: flex;
   width: 100%;

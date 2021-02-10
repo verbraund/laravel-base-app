@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 import {Link} from "react-router-dom";
+import Pagination from "../components/Pagination";
+import Search from "../components/Search";
 
 export default function News (){
 
@@ -10,25 +12,55 @@ export default function News (){
     const [ascending, setAscending] = useState(true);
 
 
-    const getSortFields = () => {
+    const firstPage = 1;
+
+    const [page, setPage] = useState(firstPage);
+    const [countPage, setCountPage] = useState(firstPage);
+
+    const [searching, setSearching] = useState('');
+
+
+
+    const getSortFieldValue = () => {
         return (ascending ? '' : '-') + sortable;
     };
 
     const setSortableField = fieldName => () => {
         setSortable((!ascending && fieldName  === sortable) ? '' : fieldName);
         setAscending((sortable !== fieldName) ? true : !ascending);
+        setPage(firstPage);
+    };
+
+    const getSearchingFieldValue = () => {
+        return searching;
+    };
+
+    const setSearchingFieldValue = v => {
+        setSearching(v);
+        setPage(firstPage);
     };
 
 
     useEffect(() => {
+
+        const params = {};
+        if(getSortFieldValue() !== '') params.sort = getSortFieldValue();
+        if(getSearchingFieldValue() !== '') params.search = getSearchingFieldValue();
+        params.page = page;
+
         axios.get(
             '/api/admin/news',
-            {params: {sort: getSortFields()}}
+            {params: params}
         ).then(function (response) {
-            if(Array.isArray(response.data.data))
+            if(Array.isArray(response.data.data)){
                 setNews(response.data.data);
+                setCountPage(response.data.meta.last_page)
+            }
+
         })
-    }, [sortable, ascending]);
+    }, [sortable, ascending, page, searching]);
+
+
 
 
     return (
@@ -38,7 +70,10 @@ export default function News (){
                     Новости {(new Date()).getMilliseconds()}
                 </h3>
             </div>
-           <div>
+            <div>
+                <Search searching={searching} setSearching={setSearchingFieldValue} />
+            </div>
+            <div>
                <table className="table grid">
                    <thead>
                        <tr>
@@ -71,7 +106,12 @@ export default function News (){
                        })}
                    </tbody>
                </table>
-           </div>
+            </div>
+            <div>
+                {countPage > firstPage &&
+                    <Pagination count={countPage} current={page} rangeCount={2} setPage={setPage}/>
+                }
+            </div>
         </div>
     );
 }

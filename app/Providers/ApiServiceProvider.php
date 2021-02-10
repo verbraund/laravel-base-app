@@ -25,6 +25,7 @@ class ApiServiceProvider extends ServiceProvider
 //            );
 //        });
         $this->app->bind( \App\Services\Api\Media\SortService::class);
+        $this->app->bind( \App\Services\Api\Media\SearchService::class);
         $this->app->bind( \App\Services\Api\Media\PaginateService::class);
 
     }

@@ -25,7 +25,8 @@ class SortService
             if(
                 !is_null($sort) &&
                 $column &&
-                $this->modelHasColumn($query,$column)
+                $this->modelHasColumn($query,$column) &&
+                $this->modelHasSortable($query->getModel(), $column)
             ){
                 $query->orderBy($column, $direction);
             }

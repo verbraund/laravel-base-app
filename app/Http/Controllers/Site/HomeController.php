@@ -19,11 +19,17 @@ class HomeController extends Controller
     public function index(Request $request, JWTService $JWTService, TFA $TFAService)
     {
 
-        dd($request->query('test', 1));
+        //dd($request->query('test', 1));
 
         $model = new News();
 
-        dd(News::paginate(10));
+        $q1 = $model->newQuery();
+        $q1->where('id', '>', 1);
+
+        //$q2 = clone $q1;
+
+
+        dd($q1->count());
 
 
         $admin = Admin::find(1);

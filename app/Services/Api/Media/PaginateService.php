@@ -17,11 +17,13 @@ class PaginateService
         $currentPage = $this->checkCurrentPage((int)$request->query('page'));
         $limit = $this->checkCurrentLimit((int)$request->query('limit'));
 
+        $queryCount = clone $query;
+
         $items = $query->skip(
             ($limit * $currentPage) - $limit
         )->take(self::DEFAULT_PER_PAGE)->get();
 
-        $count = $query->getModel()->count();
+        $count = $queryCount->count();
 
         $paginator =  new Paginator($items,$count,$limit,$currentPage);
         $paginator->withPath($request->url());
