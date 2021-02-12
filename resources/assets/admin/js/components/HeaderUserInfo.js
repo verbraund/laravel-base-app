@@ -14,7 +14,7 @@ export default function HeaderUserInfo() {
                 </Link>
             </li>
             <li className="nav-item">
-                <a onClick={auth.logout} className="nav-link">Выйти</a>
+                <a onClick={auth.logout} className="nav-link logout">Выйти</a>
             </li>
         </ul>
     );

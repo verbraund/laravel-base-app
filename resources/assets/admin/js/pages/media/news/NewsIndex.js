@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from 'react';
+import {useRouteMatch} from 'react-router-dom'
 import axios from 'axios';
 
 import {Link} from "react-router-dom";
-import Pagination from "../components/Pagination";
-import Search from "../components/Search";
+import Pagination from "../../../components/Pagination";
+import Search from "../../../components/Search";
 
-export default function News (){
+export default function NewsIndex(){
+
+
+    let { path, url } = useRouteMatch();
+    console.log(path, url);
+
 
     const [news, setNews] = useState([]);
     const [sortable, setSortable] = useState('');
@@ -74,38 +80,38 @@ export default function News (){
                 <Search searching={searching} setSearching={setSearchingFieldValue} />
             </div>
             <div>
-               <table className="table grid">
-                   <thead>
-                       <tr>
-                           <th onClick={setSortableField('id')} scope="col" className="sortable">
-                               # <i className="fas fa-sort" />
-                           </th>
-                           <th onClick={setSortableField('title')} scope="col" className="sortable">
-                               Наименование <i className="fas fa-sort" />
-                           </th>
-                           <th scope="col">Автор</th>
-                           <th scope="col">Дата создания</th>
-                           <th scope="col">Дата модификации</th>
-                           <th scope="col" />
-                       </tr>
-                   </thead>
-                   <tbody>
-                       {news.map((item, index) => {
-                           return <tr key={index}>
-                               <th scope="row">{item.id}</th>
-                               <td>{item.title}</td>
-                               <td>-</td>
-                               <td>{item.created_at}</td>
-                               <td>{item.updated_at}</td>
-                               <td>
-                                   <Link className="nav-link" to={'news/' + item.slug} >
-                                       <i className="fas fa-edit" />
-                                   </Link>
-                               </td>
-                           </tr>
-                       })}
-                   </tbody>
-               </table>
+                <table className="table grid">
+                    <thead>
+                    <tr>
+                        <th onClick={setSortableField('id')} scope="col" className="sortable">
+                            # <i className="fas fa-sort" />
+                        </th>
+                        <th onClick={setSortableField('title')} scope="col" className="sortable">
+                            Наименование <i className="fas fa-sort" />
+                        </th>
+                        <th scope="col">Автор</th>
+                        <th scope="col">Дата создания</th>
+                        <th scope="col">Дата модификации</th>
+                        <th scope="col" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {news.map((item, index) => {
+                        return <tr key={index}>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.title}</td>
+                            <td>-</td>
+                            <td>{item.created_at}</td>
+                            <td>{item.updated_at}</td>
+                            <td>
+                                <Link className="nav-link" to={ url + '/' + item.slug } >
+                                    <i className="fas fa-edit" />
+                                </Link>
+                            </td>
+                        </tr>
+                    })}
+                    </tbody>
+                </table>
             </div>
             <div>
                 {countPage > firstPage &&

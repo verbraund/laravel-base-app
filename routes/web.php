@@ -28,7 +28,8 @@ Route::middleware(['auth.ips'])->group(function(){
 
 /// Site
 Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
-Route::get('/books', [App\Http\Controllers\Site\BookController::class, 'index'])->name('books');
+Route::get('/news', [App\Http\Controllers\Site\NewsController::class, 'index'])->name('news');
+Route::get('/news/{slug}', [App\Http\Controllers\Site\NewsController::class, 'show'])->name('news.show');
 
 
 

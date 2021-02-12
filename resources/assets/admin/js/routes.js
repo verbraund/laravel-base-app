@@ -2,9 +2,9 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 
 import Home from "./pages/Home";
-import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
+import NewsIndex from "./pages/media/news/NewsIndex";
 
 export default function Routes(){
     return (
@@ -13,8 +13,12 @@ export default function Routes(){
                 <Home />
             </Route>
 
-            <Route path="/admin/news">
-                <News />
+            <Route exact path="/admin/news">
+                <NewsIndex />
+            </Route>
+
+            <Route path="/admin/news/:slug">
+                < />
             </Route>
 
             <Route path="/admin/account">

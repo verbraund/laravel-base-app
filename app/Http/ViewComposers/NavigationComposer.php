@@ -9,7 +9,7 @@ class NavigationComposer
     public function compose(View $view){
         $view->with('menu', [
             (object)['url' => '/' , 'name' => 'Главная'],
-            (object)['url' => '/books' , 'name' => 'Книги']
+            (object)['url' => '/news' , 'name' => 'Новсти']
         ]);
     }
 }

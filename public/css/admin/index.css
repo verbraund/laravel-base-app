@@ -15753,6 +15753,18 @@ body,
   margin-top: 20px;
 }
 
+.header ul li a {
+  cursor: pointer;
+}
+
+.header ul li a.logout.nav-link {
+  color: rgba(181, 8, 2, 0.85);
+}
+
+.header ul li a.logout.nav-link:hover {
+  color: rgba(64, 6, 2, 0.85);
+}
+
 .auth {
   height: 100%;
   width: 100%;
