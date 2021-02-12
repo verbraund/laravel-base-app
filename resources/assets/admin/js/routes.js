@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
 import NewsIndex from "./pages/media/news/NewsIndex";
+import NewsEdit from "./pages/media/news/NewsEdit";
 
 export default function Routes(){
     return (
@@ -18,7 +19,7 @@ export default function Routes(){
             </Route>
 
             <Route path="/admin/news/:slug">
-                < />
+                <NewsEdit />
             </Route>
 
             <Route path="/admin/account">
