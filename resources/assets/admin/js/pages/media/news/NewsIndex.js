@@ -3,8 +3,8 @@ import {useRouteMatch} from 'react-router-dom'
 import axios from 'axios';
 
 import {Link} from "react-router-dom";
-import Pagination from "../../../components/Pagination";
-import Search from "../../../components/Search";
+import Pagination from "../../../components/list/Pagination";
+import Search from "../../../components/list/Search";
 
 export default function NewsIndex(){
 

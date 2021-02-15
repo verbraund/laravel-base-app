@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarMenu from "../components/Menu";
+import SidebarMenu from "../components/layout/Menu";
 
 export default function Sidebar() {
 

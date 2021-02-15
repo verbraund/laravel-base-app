@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderMenu from "../components/Menu";
-import HeaderUserInfo from "../components/HeaderUserInfo";
+import HeaderMenu from "../components/layout/Menu";
+import HeaderUserInfo from "../components/layout/HeaderUserInfo";
 
 export default function Header() {
 

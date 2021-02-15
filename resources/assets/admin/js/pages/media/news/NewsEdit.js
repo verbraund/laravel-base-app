@@ -1,6 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import axios from "axios";
+import FormInputText from "../../../components/form/FormInputText";
+import FormTextarea from "../../../components/form/FormTextarea";
+import FormCheckbox from "../../../components/form/FormCheckbox";
+import FormSelect from "../../../components/form/FormSelect";
+import FormMultiSelect from "../../../components/form/FormMultiSelect";
 
 export default function NewsEdit(){
 
@@ -65,31 +70,21 @@ export default function NewsEdit(){
                 <div className="card-body">
 
 
-                    <div className="form-group">
-                        <label htmlFor="FormTitleInput">Наименование</label>
-                        <input ref={title} type="text" className="form-control" id="FormTitleInput" aria-describedby="FormTitleInputHelp" />
-                        <small id="FormTitleInputHelp" className="form-text text-muted">meta:title</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormSlugInput">ЧПУ (URI)</label>
-                        <input ref={slug} type="text" className="form-control" id="FormSlugInput" aria-describedby="FormSlugInputHelp" />
-                        <small id="FormSlugInputHelp" className="form-text text-muted">Заполниться автоматически</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormDescriptionTextarea">Краткое описание</label>
-                        <textarea ref={description} className="form-control" id="FormDescriptionTextarea" rows="3" />
-                        <small id="FormDescriptionTextareaHelp" className="form-text text-muted">meta:description</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormTextTextarea">Основной текст</label>
-                        <textarea ref={text} className="form-control" id="FormTextTextarea" rows="10" />
-                    </div>
+                    <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 
+                    <FormInputText reference={slug} title={'ЧПУ (URI)'} description={'Заполниться автоматически'} />
 
-                    <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="FormPublishCheckbox" />
-                        <label className="form-check-label" htmlFor="FormPublishCheckbox">Опубликовать</label>
-                    </div>
+                    <FormTextarea reference={description} title={'Краткое описание'} description={'meta:description'} />
+
+                    <FormTextarea reference={text} title={'Основной текст'} rows={10} />
+
+                    <FormCheckbox title={'Опубликовать'} />
+
+                    <FormSelect title={'Опубликовать'} options={
+                        [{name: 'ivan', value: 1}, {name: 'vasya', value: 2},{name: 'petya', value: 3}]
+                    } description={'123213'}/>
+
+                    <FormMultiSelect title={'Тест мультиселект'} />
 
                 </div>
                 <div className="card-body">

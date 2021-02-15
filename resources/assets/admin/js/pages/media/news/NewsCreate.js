@@ -1,6 +1,9 @@
 import React, {useRef} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from "axios";
+import FormInputText from "../../../components/form/FormInputText";
+import FormTextarea from "../../../components/form/FormTextarea";
+import FormCheckbox from "../../../components/form/FormCheckbox";
 
 export default function NewsCreate(){
 
@@ -40,31 +43,16 @@ export default function NewsCreate(){
                 <h5 className="card-header">Создание Новости</h5>
                 <div className="card-body">
 
-                    <div className="form-group">
-                        <label htmlFor="FormTitleInput">Наименование</label>
-                        <input ref={title} type="text" className="form-control" id="FormTitleInput" aria-describedby="FormTitleInputHelp" />
-                        <small id="FormTitleInputHelp" className="form-text text-muted">meta:title</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormSlugInput">ЧПУ (URI)</label>
-                        <input ref={slug} type="text" className="form-control" id="FormSlugInput" aria-describedby="FormSlugInputHelp" />
-                        <small id="FormSlugInputHelp" className="form-text text-muted">Заполниться автоматически</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormDescriptionTextarea">Краткое описание</label>
-                        <textarea ref={description} className="form-control" id="FormDescriptionTextarea" rows="3" />
-                        <small id="FormDescriptionTextareaHelp" className="form-text text-muted">meta:description</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="FormTextTextarea">Основной текст</label>
-                        <textarea ref={text} className="form-control" id="FormTextTextarea" rows="10" />
-                    </div>
+                    <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 
+                    <FormInputText reference={slug} title={'ЧПУ (URI)'} description={'Заполниться автоматически'} />
 
-                    <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="FormPublishCheckbox" />
-                        <label className="form-check-label" htmlFor="FormPublishCheckbox">Опубликовать</label>
-                    </div>
+                    <FormTextarea reference={description} title={'Краткое описание'} description={'meta:description'} />
+
+                    <FormTextarea reference={text} title={'Основной текст'} rows={10} />
+
+                    <FormCheckbox title={'Опубликовать'} />
+
 
                 </div>
                 <div className="card-body">
