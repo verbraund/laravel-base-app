@@ -22,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          \App\Models\Media\News\News::class => \App\Policies\Media\News\NewsPolicy::class,
-         \App\Models\Admin::class => \App\Policies\AdminPolicy::class,
+         //\App\Models\Admin::class => \App\Policies\AdminPolicy::class,
     ];
 
     /**

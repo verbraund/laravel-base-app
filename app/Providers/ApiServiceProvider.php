@@ -18,6 +18,8 @@ class ApiServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\Api\Auth\TFA::class, \App\Services\Api\Auth\GoogleAuthQrCode::class);
 
         $this->app->bind(\App\Contracts\Api\Media\News::class, \App\Services\Api\Media\NewsService::class);
+        $this->app->bind(\App\Contracts\Api\Media\NewsCategory::class, \App\Services\Api\Media\NewsCategoryService::class);
+
         $this->app->bind(\App\Contracts\Api\Media\QueryFilters::class, \App\Services\Api\Media\QueryFiltersService::class);
 //        $this->app->bind(\App\Contracts\Api\Media\QueryFilters::class, function(){
 //            return new \App\Services\Api\Media\QueryFiltersService(

@@ -26,6 +26,7 @@ class NewsFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
+            'user_id' => 1,
             'description' => $this->faker->text(200),
             'text' => $this->faker->text(1000),
             'published_at' => $this->faker->dateTime

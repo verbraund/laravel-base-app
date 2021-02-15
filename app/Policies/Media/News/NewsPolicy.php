@@ -18,7 +18,7 @@ class NewsPolicy
      */
     public function viewAny(Admin $admin)
     {
-        //
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class NewsPolicy
      */
     public function view(Admin $admin, News $news)
     {
-        //
+        return false;
     }
 
     /**
@@ -41,7 +41,7 @@ class NewsPolicy
      */
     public function create(Admin $admin)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +53,7 @@ class NewsPolicy
      */
     public function update(Admin $admin, News $news)
     {
-        //
+        return false;
     }
 
     /**
@@ -65,7 +65,7 @@ class NewsPolicy
      */
     public function delete(Admin $admin, News $news)
     {
-        //
+        return false;
     }
 
     /**
@@ -77,7 +77,7 @@ class NewsPolicy
      */
     public function restore(Admin $admin, News $news)
     {
-        //
+        return false;
     }
 
     /**
@@ -89,6 +89,6 @@ class NewsPolicy
      */
     public function forceDelete(Admin $admin, News $news)
     {
-        //
+        return false;
     }
 }

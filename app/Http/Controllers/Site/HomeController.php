@@ -11,6 +11,7 @@ use App\Services\Api\Auth\JOSE\JWT;
 use App\Services\Api\Auth\JOSE\JWS;
 use App\Services\Api\Auth\JWTService;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
@@ -20,7 +21,26 @@ class HomeController extends Controller
     {
 
 
+        Admin::find(1)->can('view',News::class);
+        //User::find(1)->can('view',News::find(1));
+        //auth()->user()->can('view',News::find(1));
 
+        dd(News::find(1));
+
+//        $news = new News();
+//
+//        $data = [
+//            'title' => 'Test 5',
+//            'slug' => 'test-5',
+//            'description' => '1',
+//            'text' => '44444',
+//        ];
+//
+//        $n = $news->newQuery()->where('id', 225)->first();
+//        $n->fill($data);
+//        $result = $n->save();
+//        dd($result);
+//
 //        $g = new \Google\Authenticator\GoogleAuthenticator();
 //
 //        $user = 'admin';

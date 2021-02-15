@@ -7,6 +7,11 @@ use App\Http\Requests\Api\V1\BaseRequest;
 class LoginRequest extends BaseRequest
 {
 
+
+    public function authorize()
+    {
+        return true;
+    }
     /**
      * Get the validation rules that apply to the request.
      *

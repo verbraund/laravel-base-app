@@ -37,7 +37,14 @@ Route::middleware(['auth.ips'])->group(function(){
             //Media
             //News
             Route::get('news',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'index']);
-            Route::get('news/{slug}',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'show']);
+            Route::get('news/{id}/edit',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'edit']);
+            Route::post('news/{id}',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'update']);
+            Route::post('news',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'store']);
+
+            //NewsCategory
+            Route::get('categories',[App\Http\Controllers\Admin\Api\V1\Media\NewsCategoryController::class, 'index']);
+
+
         });
     });
 

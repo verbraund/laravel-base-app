@@ -1,10 +1,9 @@
-import React, {useEffect, useRef} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import React, {useRef} from 'react';
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
 
-export default function NewsEdit(){
+export default function NewsCreate(){
 
-    let { id } = useParams();
     let history = useHistory();
 
 
@@ -14,45 +13,22 @@ export default function NewsEdit(){
     const text = useRef('');
 
 
-    useEffect(() => {
-
-        axios.get(
-            '/api/admin/news/' + id + '/edit',
-            {params: {}}
-        ).then(function (response) {
-            if(typeof response.data.data === 'object' && response.data.data !== null){
-                title.current.value = response.data.data.title;
-                slug.current.value = response.data.data.slug;
-                description.current.value = response.data.data.description;
-                text.current.value = response.data.data.text;
-                //setNews(response.data.data);
-            }
-
-        }).catch(_ => {
-            history.push('/admin/404');
-        });
-    }, []);
-
-
-    const save = () => {
+    const create = () => {
         axios.post(
-            '/api/admin/news/' + id ,
+            '/api/admin/news' ,
             {
-                    title: title.current.value,
-                    slug: slug.current.value,
-                    description: description.current.value,
-                    text: text.current.value,
-                }
-        ).then(function (response) {
+                title: title.current.value,
+                slug: slug.current.value,
+                description: description.current.value,
+                text: text.current.value,
+            }
+        ).then(response => {
             if(typeof response.data.data === 'object' && response.data.data !== null){
-                title.current.value = response.data.data.title;
-                slug.current.value = response.data.data.slug;
-                description.current.value = response.data.data.description;
-                text.current.value = response.data.data.text;
-                //setNews(response.data.data);
+                history.push('/admin/news/' + response.data.data.id + '/edit');
             }
 
         }).catch(_ => {
+            //console.log(response);
             console.error('catch error');
             //history.push('/admin/404');
         });
@@ -61,9 +37,8 @@ export default function NewsEdit(){
     return (
         <div>
             <div className="card">
-                <h5 className="card-header">Редактирование Новости</h5>
+                <h5 className="card-header">Создание Новости</h5>
                 <div className="card-body">
-
 
                     <div className="form-group">
                         <label htmlFor="FormTitleInput">Наименование</label>
@@ -93,7 +68,7 @@ export default function NewsEdit(){
 
                 </div>
                 <div className="card-body">
-                    <a className="btn btn-primary" onClick={save}>Сохранить</a>
+                    <a className="btn btn-primary" onClick={create}>Создать</a>
                 </div>
             </div>
 

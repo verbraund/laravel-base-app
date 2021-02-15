@@ -17,11 +17,13 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
+            $table->unsignedBigInteger('user_id')->default(0);
+            $table->foreign('user_id')->references('id')->on('admins');
             $table->string('title');
             $table->string('slug');
             $table->string('description');
             $table->text('text');
-            $table->dateTime('published_at');
+            $table->dateTime('published_at')->default(null);
             $table->timestamps();
         });
 

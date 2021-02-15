@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Resources\Media\News;
+
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class NewsCollection extends ResourceCollection
+class NewsCategoryCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,19 +16,9 @@ class NewsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        $this->collection->transform(function ($news) {
-            return (new NewsResource($news))->except(['description','text','categories']);
+        $this->collection->transform(function ($newsCategory) {
+            return new NewsCategoryResource($newsCategory);
         });
         return parent::toArray($request);
     }
-
-    public function with($request)
-    {
-        return [
-            'test' => [
-                'self' => 'link-value',
-            ],
-        ];
-    }
-
 }

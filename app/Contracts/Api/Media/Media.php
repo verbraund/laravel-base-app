@@ -7,14 +7,16 @@ namespace App\Contracts\Api\Media;
 interface Media
 {
 
-    public function create();
+    public function create($data);
 
     public function getBy($name, $value);
 
-    public function getAll($request);
+    public function getById($id);
 
-    public function delete();
+    public function getAll();
 
-    public function edit();
+    public function delete($id);
+
+    public function update($id, $data);
 
 }

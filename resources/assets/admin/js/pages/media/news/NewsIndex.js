@@ -77,6 +77,11 @@ export default function NewsIndex(){
                 </h3>
             </div>
             <div>
+                <Link className="btn btn-primary" to={ url + '/create' } >
+                    <i className="fas fa-edit" /> Создать
+                </Link>
+            </div>
+            <div>
                 <Search searching={searching} setSearching={setSearchingFieldValue} />
             </div>
             <div>
@@ -104,7 +109,7 @@ export default function NewsIndex(){
                             <td>{item.created_at}</td>
                             <td>{item.updated_at}</td>
                             <td>
-                                <Link className="nav-link" to={ url + '/' + item.slug } >
+                                <Link className="nav-link" to={ url + '/' + item.id + '/edit' } >
                                     <i className="fas fa-edit" />
                                 </Link>
                             </td>

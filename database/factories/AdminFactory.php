@@ -23,6 +23,7 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
+            'id' => 1,
             'login' => 'admin',
             'password' => '$2y$10$jBndEfRKb/NvVhecsHlHsOuGy/FR9bDRJASRvkGHMWgbKmfKzN.Vy', // 123
             'tfa' => 0,

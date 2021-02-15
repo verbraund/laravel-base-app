@@ -3,6 +3,7 @@
 namespace App\Models\Media\News;
 
 use App\Extensions\Searchable;
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,8 @@ class News extends Model
         'slug',
         'description',
         'text',
-        'published_at'
+        'published_at',
+        'user_id'
     ];
 
     public $sortable = [
@@ -30,4 +32,14 @@ class News extends Model
         'description',
         'text',
     ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(NewsCategory::class, 'news_category', 'news_id', 'category_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Admin::class, 'id', 'user_id');
+    }
 }

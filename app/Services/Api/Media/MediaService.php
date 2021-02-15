@@ -21,17 +21,12 @@ class MediaService implements Media
         $this->paginator = $paginateService;
     }
 
-    public function create()
-    {
-        // TODO: Implement create() method.
-    }
-
-    public function getAll($request)
+    public function getAll()
     {
         return $this->paginator->apply(
             $this->filters->apply(
-                $this->getModel()->newQuery(), $request
-            ), $request
+                $this->getModel()->newQuery()
+            )
         );
 
 //        return $this->paginator->paginate(
@@ -41,19 +36,38 @@ class MediaService implements Media
 //        );
     }
 
-    public function delete()
+    public function getById($id)
     {
-        // TODO: Implement delete() method.
+        return $this->getBy('id', $id);
     }
 
-    public function edit()
+    public function create($data)
     {
-        // TODO: Implement edit() method.
+        return $this->getModel()
+            ->newQuery()
+            ->create($data);
+    }
+
+    public function update($id, $data)
+    {
+        $model = $this->getById($id);
+        $model->fill($data);
+        $model->save();
+        return $model;
+    }
+
+    public function delete($id)
+    {
+        $model = $this->getById($id);
+        return $model->delete();
     }
 
     public function getBy($name, $value)
     {
-        return $this->getModel()->where($name, $value)->firstOrFail();
+        return $this->getModel()
+            ->newQuery()
+            ->where($name, $value)
+            ->firstOrFail();
     }
 
     protected function getModel()

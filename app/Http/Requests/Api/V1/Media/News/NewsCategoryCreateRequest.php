@@ -1,17 +1,13 @@
 <?php
 
 
-namespace App\Http\Requests\Api\V1\Auth;
+namespace App\Http\Requests\Api\V1\Media\News;
+
 
 use App\Http\Requests\Api\V1\BaseRequest;
 
-class LoginTfaRequest extends BaseRequest
+class NewsCategoryCreateRequest extends BaseRequest
 {
-
-    public function authorize()
-    {
-        return true;
-    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,8 +16,8 @@ class LoginTfaRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => 'required|integer|digits:6'
+            'title' => 'required|string|min:3|max:255',
+            'slug' => 'nullable|string|max:255',
         ];
     }
-
 }

@@ -70691,6 +70691,121 @@ function NotFound() {
 
 /***/ }),
 
+/***/ "./resources/assets/admin/js/pages/media/news/NewsCreate.js":
+/*!******************************************************************!*\
+  !*** ./resources/assets/admin/js/pages/media/news/NewsCreate.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NewsCreate; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+function NewsCreate() {
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
+  var title = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var slug = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var description = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var text = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+
+  var create = function create() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/admin/news', {
+      title: title.current.value,
+      slug: slug.current.value,
+      description: description.current.value,
+      text: text.current.value
+    }).then(function (response) {
+      if (_typeof(response.data.data) === 'object' && response.data.data !== null) {
+        history.push('/admin/news/' + response.data.data.id + '/edit');
+      }
+    })["catch"](function (_) {
+      //console.log(response);
+      console.error('catch error'); //history.push('/admin/404');
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "card-header"
+  }, "\u0421\u043E\u0437\u0434\u0430\u043D\u0438\u0435 \u041D\u043E\u0432\u043E\u0441\u0442\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormTitleInput"
+  }, "\u041D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    ref: title,
+    type: "text",
+    className: "form-control",
+    id: "FormTitleInput",
+    "aria-describedby": "FormTitleInputHelp"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormTitleInputHelp",
+    className: "form-text text-muted"
+  }, "meta:title")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormSlugInput"
+  }, "\u0427\u041F\u0423 (URI)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    ref: slug,
+    type: "text",
+    className: "form-control",
+    id: "FormSlugInput",
+    "aria-describedby": "FormSlugInputHelp"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormSlugInputHelp",
+    className: "form-text text-muted"
+  }, "\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C\u0441\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormDescriptionTextarea"
+  }, "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    ref: description,
+    className: "form-control",
+    id: "FormDescriptionTextarea",
+    rows: "3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormDescriptionTextareaHelp",
+    className: "form-text text-muted"
+  }, "meta:description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormTextTextarea"
+  }, "\u041E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0442\u0435\u043A\u0441\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    ref: text,
+    className: "form-control",
+    id: "FormTextTextarea",
+    rows: "10"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    className: "form-check-input",
+    id: "FormPublishCheckbox"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "FormPublishCheckbox"
+  }, "\u041E\u043F\u0443\u0431\u043B\u0438\u043A\u043E\u0432\u0430\u0442\u044C"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "btn btn-primary",
+    onClick: create
+  }, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C"))));
+}
+
+/***/ }),
+
 /***/ "./resources/assets/admin/js/pages/media/news/NewsEdit.js":
 /*!****************************************************************!*\
   !*** ./resources/assets/admin/js/pages/media/news/NewsEdit.js ***!
@@ -70703,22 +70818,124 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NewsEdit; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
 
 function NewsEdit() {
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])(),
+      id = _useParams.id;
+
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
+  var title = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var slug = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var description = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  var text = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/admin/news/' + id + '/edit', {
+      params: {}
+    }).then(function (response) {
+      if (_typeof(response.data.data) === 'object' && response.data.data !== null) {
+        title.current.value = response.data.data.title;
+        slug.current.value = response.data.data.slug;
+        description.current.value = response.data.data.description;
+        text.current.value = response.data.data.text; //setNews(response.data.data);
+      }
+    })["catch"](function (_) {
+      history.push('/admin/404');
+    });
+  }, []);
+
+  var save = function save() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/admin/news/' + id, {
+      title: title.current.value,
+      slug: slug.current.value,
+      description: description.current.value,
+      text: text.current.value
+    }).then(function (response) {
+      if (_typeof(response.data.data) === 'object' && response.data.data !== null) {
+        title.current.value = response.data.data.title;
+        slug.current.value = response.data.data.slug;
+        description.current.value = response.data.data.description;
+        text.current.value = response.data.data.text; //setNews(response.data.data);
+      }
+    })["catch"](function (_) {
+      console.error('catch error'); //history.push('/admin/404');
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     className: "card-header"
   }, "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u041D\u043E\u0432\u043E\u0441\u0442\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "card-title"
-  }, "Special title treatment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "card-text"
-  }, "With supporting text below as a natural lead-in to additional content."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-primary"
-  }, "Go somewhere"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormTitleInput"
+  }, "\u041D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    ref: title,
+    type: "text",
+    className: "form-control",
+    id: "FormTitleInput",
+    "aria-describedby": "FormTitleInputHelp"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormTitleInputHelp",
+    className: "form-text text-muted"
+  }, "meta:title")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormSlugInput"
+  }, "\u0427\u041F\u0423 (URI)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    ref: slug,
+    type: "text",
+    className: "form-control",
+    id: "FormSlugInput",
+    "aria-describedby": "FormSlugInputHelp"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormSlugInputHelp",
+    className: "form-text text-muted"
+  }, "\u0417\u0430\u043F\u043E\u043B\u043D\u0438\u0442\u044C\u0441\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormDescriptionTextarea"
+  }, "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    ref: description,
+    className: "form-control",
+    id: "FormDescriptionTextarea",
+    rows: "3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    id: "FormDescriptionTextareaHelp",
+    className: "form-text text-muted"
+  }, "meta:description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "FormTextTextarea"
+  }, "\u041E\u0441\u043D\u043E\u0432\u043D\u043E\u0439 \u0442\u0435\u043A\u0441\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    ref: text,
+    className: "form-control",
+    id: "FormTextTextarea",
+    rows: "10"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group form-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    className: "form-check-input",
+    id: "FormPublishCheckbox"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "form-check-label",
+    htmlFor: "FormPublishCheckbox"
+  }, "\u041E\u043F\u0443\u0431\u043B\u0438\u043A\u043E\u0432\u0430\u0442\u044C"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "btn btn-primary",
+    onClick: save
+  }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"))));
 }
 
 /***/ }),
@@ -70834,7 +71051,12 @@ function NewsIndex() {
   }, [sortable, ascending, page, searching]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "h3"
-  }, "\u041D\u043E\u0432\u043E\u0441\u0442\u0438 ", new Date().getMilliseconds())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Search__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "\u041D\u043E\u0432\u043E\u0441\u0442\u0438 ", new Date().getMilliseconds())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "btn btn-primary",
+    to: url + '/create'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-edit"
+  }), " \u0421\u043E\u0437\u0434\u0430\u0442\u044C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Search__WEBPACK_IMPORTED_MODULE_4__["default"], {
     searching: searching,
     setSearching: setSearchingFieldValue
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
@@ -70866,7 +71088,7 @@ function NewsIndex() {
       scope: "row"
     }, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.updated_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav-link",
-      to: url + '/' + item.slug
+      to: url + '/' + item.id + '/edit'
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fas fa-edit"
     }))));
@@ -71018,6 +71240,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Account__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Account */ "./resources/assets/admin/js/pages/Account.js");
 /* harmony import */ var _pages_media_news_NewsIndex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/media/news/NewsIndex */ "./resources/assets/admin/js/pages/media/news/NewsIndex.js");
 /* harmony import */ var _pages_media_news_NewsEdit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/media/news/NewsEdit */ "./resources/assets/admin/js/pages/media/news/NewsEdit.js");
+/* harmony import */ var _pages_media_news_NewsCreate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/media/news/NewsCreate */ "./resources/assets/admin/js/pages/media/news/NewsCreate.js");
+
 
 
 
@@ -71033,7 +71257,10 @@ function Routes() {
     exact: true,
     path: "/admin/news"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_media_news_NewsIndex__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/admin/news/:slug"
+    exact: true,
+    path: "/admin/news/create"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_media_news_NewsCreate__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/admin/news/:id/edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_media_news_NewsEdit__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/admin/account"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Account__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -71306,8 +71533,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp7.4\htdocs\laravel.base\resources\assets\admin\js\index.js */"./resources/assets/admin/js/index.js");
-module.exports = __webpack_require__(/*! D:\xampp7.4\htdocs\laravel.base\resources\assets\admin\style\index.sass */"./resources/assets/admin/style/index.sass");
+__webpack_require__(/*! /usr/local/var/www/laravel.base/resources/assets/admin/js/index.js */"./resources/assets/admin/js/index.js");
+module.exports = __webpack_require__(/*! /usr/local/var/www/laravel.base/resources/assets/admin/style/index.sass */"./resources/assets/admin/style/index.sass");
 
 
 /***/ })

@@ -3,6 +3,7 @@
 
 namespace App\Services\Api\Media;
 
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class PaginateService
@@ -11,11 +12,18 @@ class PaginateService
     const DEFAULT_PER_PAGE = 10;
     const DEFAULT_CURRENT_PAGE = 1;
 
-    public function apply($query, $request)
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    public function apply($query)
     {
 
-        $currentPage = $this->checkCurrentPage((int)$request->query('page'));
-        $limit = $this->checkCurrentLimit((int)$request->query('limit'));
+        $currentPage = $this->checkCurrentPage((int)$this->request->query('page'));
+        $limit = $this->checkCurrentLimit((int)$this->request->query('limit'));
 
         $queryCount = clone $query;
 
@@ -26,8 +34,8 @@ class PaginateService
         $count = $queryCount->count();
 
         $paginator =  new Paginator($items,$count,$limit,$currentPage);
-        $paginator->withPath($request->url());
-        $paginator->appends($request->query());
+        $paginator->withPath($this->request->url());
+        $paginator->appends($this->request->query());
 
         return $paginator;
     }
