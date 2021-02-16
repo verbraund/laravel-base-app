@@ -70168,10 +70168,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormMultiSelect; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormMultiSelectOption */ "./resources/assets/admin/js/components/form/FormMultiSelectOption.js");
+
 
 function FormMultiSelect(_ref) {
   var title = _ref.title,
-      description = _ref.description;
+      description = _ref.description,
+      options = _ref.options;
   var multiSelectId = 'FormMultiSelect-' + Math.random().toString(36).substr(2);
   var helperId = 'FormMultiSelectHelper-' + Math.random().toString(36).substr(2);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70181,14 +70184,45 @@ function FormMultiSelect(_ref) {
   }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "multi-select",
     id: multiSelectId
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "multi-select-option"
-  }, "Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "multi-select-option"
-  }, "Test 123")), description && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+  }, options.map(function (o, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: i,
+      title: o.title,
+      value: o.value
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "choice"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-angle-down"
+  }))), description && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     id: helperId,
     className: "form-text text-muted"
   }, description));
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin/js/components/form/FormMultiSelectOption.js":
+/*!****************************************************************************!*\
+  !*** ./resources/assets/admin/js/components/form/FormMultiSelectOption.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormMultiSelectOption; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function FormMultiSelectOption(_ref) {
+  var title = _ref.title,
+      value = _ref.value;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "multi-select-option"
+  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-times"
+  }));
 }
 
 /***/ }),
@@ -70981,6 +71015,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_FormMultiSelect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/form/FormMultiSelect */ "./resources/assets/admin/js/components/form/FormMultiSelect.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -70998,6 +71044,12 @@ function NewsEdit() {
   var slug = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
   var description = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
   var text = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])('');
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      categories = _useState2[0],
+      setCategories = _useState2[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/admin/news/' + id + '/edit', {
       params: {}
@@ -71006,7 +71058,13 @@ function NewsEdit() {
         title.current.value = response.data.data.title;
         slug.current.value = response.data.data.slug;
         description.current.value = response.data.data.description;
-        text.current.value = response.data.data.text; //setNews(response.data.data);
+        text.current.value = response.data.data.text;
+        setCategories(response.data.data.categories.map(function (item) {
+          return {
+            value: item.id,
+            title: item.title
+          };
+        })); //console.log(categories);
       }
     })["catch"](function (_) {
       history.push('/admin/404');
@@ -71055,21 +71113,9 @@ function NewsEdit() {
     rows: 10
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: 'Опубликовать'
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormSelect__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    title: 'Опубликовать',
-    options: [{
-      name: 'ivan',
-      value: 1
-    }, {
-      name: 'vasya',
-      value: 2
-    }, {
-      name: 'petya',
-      value: 3
-    }],
-    description: '123213'
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormMultiSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    title: 'Тест мультиселект'
+    title: 'Категории',
+    options: categories
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -71673,8 +71719,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp7.4\htdocs\laravel.base\resources\assets\admin\js\index.js */"./resources/assets/admin/js/index.js");
-module.exports = __webpack_require__(/*! D:\xampp7.4\htdocs\laravel.base\resources\assets\admin\style\index.sass */"./resources/assets/admin/style/index.sass");
+__webpack_require__(/*! /usr/local/var/www/laravel.base/resources/assets/admin/js/index.js */"./resources/assets/admin/js/index.js");
+module.exports = __webpack_require__(/*! /usr/local/var/www/laravel.base/resources/assets/admin/style/index.sass */"./resources/assets/admin/style/index.sass");
 
 
 /***/ })

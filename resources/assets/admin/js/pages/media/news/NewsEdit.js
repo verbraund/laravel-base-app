@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import axios from "axios";
 import FormInputText from "../../../components/form/FormInputText";
@@ -12,11 +12,12 @@ export default function NewsEdit(){
     let { id } = useParams();
     let history = useHistory();
 
-
     const title = useRef('');
     const slug = useRef('');
     const description = useRef('');
     const text = useRef('');
+
+    const [categories, setCategories] = useState([]);
 
 
     useEffect(() => {
@@ -30,7 +31,10 @@ export default function NewsEdit(){
                 slug.current.value = response.data.data.slug;
                 description.current.value = response.data.data.description;
                 text.current.value = response.data.data.text;
-                //setNews(response.data.data);
+                setCategories(response.data.data.categories.map(item => {
+                    return {value: item.id, title: item.title};
+                }));
+                //console.log(categories);
             }
 
         }).catch(_ => {
@@ -80,11 +84,7 @@ export default function NewsEdit(){
 
                     <FormCheckbox title={'Опубликовать'} />
 
-                    <FormSelect title={'Опубликовать'} options={
-                        [{name: 'ivan', value: 1}, {name: 'vasya', value: 2},{name: 'petya', value: 3}]
-                    } description={'123213'}/>
-
-                    <FormMultiSelect title={'Тест мультиселект'} />
+                    <FormMultiSelect title={'Категории'} options={categories} />
 
                 </div>
                 <div className="card-body">
