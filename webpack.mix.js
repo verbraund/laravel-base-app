@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
-//const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 
 /*
  |--------------------------------------------------------------------------
@@ -15,7 +16,46 @@ const mix = require('laravel-mix');
 mix.react('resources/assets/admin/js/index.js', 'public/js/admin')
     .sass('resources/assets/admin/style/index.sass', 'public/css/admin');
 
-//
+
+Mix.listen('configReady', function(config) {
+    const rules = config.module.rules;
+    const cssExt = '.css';
+    const cssExclude = /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/;
+    const svgExt = '.svg';
+    const svgExclude = /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/;
+
+    for (let rule of rules) {
+        if (rule.test) {
+            if((rule.test.toString()).indexOf(cssExt) + 1){
+
+                if(rule.hasOwnProperty('exclude')){
+                    if(Array.isArray(rule.exclude)){
+                        rule.exclude.push(cssExclude);
+                    }else{
+                        let tmp = rule.exclude;
+                        rule.exclude = [tmp, cssExclude]
+                    }
+                }else{
+                    rule.exclude = [cssExclude];
+                }
+            }
+
+            if ((rule.test.toString()).indexOf(svgExt) + 1) {
+                if(rule.hasOwnProperty('exclude')){
+                    if(Array.isArray(rule.exclude)){
+                        rule.exclude.push(svgExclude);
+                    }else{
+                        let tmp = rule.exclude;
+                        rule.exclude = [tmp, svgExclude]
+                    }
+                }else{
+                    rule.exclude = [svgExclude];
+                }
+            }
+        }
+    }
+});
+
 //mix.override(function (webpackConfig) {
 //    webpackConfig.module.rules.push({
 //        oneOf: [
@@ -30,42 +70,71 @@ mix.react('resources/assets/admin/js/index.js', 'public/js/admin')
 //                        loader: 'style-loader',
 //                        options: {
 //                            injectType: 'singletonStyleTag',
-//                            singleton: true,
-//
+//                            attributes: {
+//                                'data-cke': true
+//                            }
 //                        }
 //                    },
 //                    {
 //                        loader: 'postcss-loader',
-//                        options: styles.getPostCssConfig( {
+//                        options: styles.getPostCssConfig({
 //                            themeImporter: {
 //                                themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
 //                            },
 //                            minify: true
-//                        } )
-//                    }
+//                        })
+//                    },
 //                ]
-//            },
-//            {
-//                loader: require.resolve( 'file-loader' ),
-//                // Exclude `js` files to keep the "css" loader working as it injects
-//                // its runtime that would otherwise be processed through the "file" loader.
-//                // Also exclude `html` and `json` extensions so they get processed
-//                // by webpack's internal loaders.
-//                exclude: [
-//                    /\.(js|mjs|jsx|ts|tsx)$/,
-//                    /\.html$/,
-//                    /\.json$/,
-//                    /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-//                    /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/
-//                ],
-//                options: {
-//                    name: 'static/media/[name].[hash:8].[ext]',
-//                }
-//            },
-//
-//
+//            }
 //        ]
 //    });
+//    //console.log(webpackConfig.module.rules);
 //
 //    return webpackConfig;
 //});
+
+
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                oneOf: [
+                    {
+                        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                        use: [ 'raw-loader' ]
+                    },
+                    {
+                        test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                        use: [
+                            {
+                                loader: 'style-loader',
+                                options: {
+                                    injectType: 'singletonStyleTag',
+                                    attributes: {
+                                        'data-cke': true
+                                    }
+                                }
+                            },
+                            {
+                                loader: 'postcss-loader',
+                                options: styles.getPostCssConfig({
+                                    themeImporter: {
+                                        themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+                                    },
+                                    minify: true
+                                })
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+
+        new CKEditorWebpackPlugin( {
+            language: 'ru',
+            addMainLanguageTranslationsToAllAssets: true
+        } )
+    ]
+});
