@@ -15714,7 +15714,7 @@ body,
   position: relative;
 }
 
-.multi-select .multi-select-option {
+.multi-select .multi-select-option-selected {
   display: inline-block;
   background-color: #d9d9d9;
   padding: 3px 25px 3px 10px;
@@ -15723,16 +15723,16 @@ body,
   position: relative;
 }
 
-.multi-select .multi-select-option:hover {
+.multi-select .multi-select-option-selected:hover {
   background-color: #c2c2c2;
 }
 
-.multi-select .multi-select-option:hover i {
+.multi-select .multi-select-option-selected:hover i {
   color: #5a5959;
   cursor: pointer;
 }
 
-.multi-select .multi-select-option i {
+.multi-select .multi-select-option-selected i {
   position: absolute;
   right: 7px;
   top: 0;
@@ -15745,10 +15745,17 @@ body,
 
 .multi-select .choice {
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: 0;
   bottom: 0;
   margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.multi-select .choice:hover i {
+  color: #636363;
 }
 
 .multi-select .choice i {
@@ -15757,8 +15764,22 @@ body,
   font-size: 1.3rem;
 }
 
-.multi-select .choice i:hover {
-  color: #636363;
+.multi-select .multi-select-helper {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  top: 100%;
+  background: #fff;
+  border: 1px solid #d5d5d5;
+  overflow-y: auto;
+}
+
+.multi-select .multi-select-helper .multi-select-option {
+  padding: 8px 20px;
+  border-bottom: 1px solid #ececec;
   cursor: pointer;
 }
 

@@ -18,28 +18,40 @@ export default function NewsEdit(){
     const text = useRef('');
 
     const [categories, setCategories] = useState([]);
+    const [currentCategories, setCurrentCategories] = useState([]);
 
 
     useEffect(() => {
 
-        axios.get(
-            '/api/admin/news/' + id + '/edit',
-            {params: {}}
-        ).then(function (response) {
+        axios.get('/api/admin/news/' + id + '/edit',).then(function (response) {
             if(typeof response.data.data === 'object' && response.data.data !== null){
                 title.current.value = response.data.data.title;
                 slug.current.value = response.data.data.slug;
                 description.current.value = response.data.data.description;
                 text.current.value = response.data.data.text;
-                setCategories(response.data.data.categories.map(item => {
+                setCurrentCategories(response.data.data.categories.map(item => {
                     return {value: item.id, title: item.title};
                 }));
-                //console.log(categories);
             }
 
         }).catch(_ => {
             history.push('/admin/404');
         });
+
+
+        axios.get('/api/admin/news/categories').then(function (response) {
+            if(typeof response.data.data === 'object' && response.data.data !== null){
+                setCategories(response.data.data.map(item => {
+                    return {value: item.id, title: item.title};
+                }));
+            }
+        }).catch(e => {
+            console.error(e);
+            //history.push('/admin/404');
+        });
+
+
+
     }, []);
 
 
@@ -82,10 +94,20 @@ export default function NewsEdit(){
 
                     <FormTextarea reference={text} title={'Основной текст'} rows={10} />
 
+
+
+                    <FormMultiSelect title={'Категории'} items={categories} selected={currentCategories}/>
+
                     <FormCheckbox title={'Опубликовать'} />
-
-                    <FormMultiSelect title={'Категории'} options={categories} />
-
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
                 </div>
                 <div className="card-body">
                     <a className="btn btn-primary" onClick={save}>Сохранить</a>

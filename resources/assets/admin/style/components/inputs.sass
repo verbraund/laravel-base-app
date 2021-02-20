@@ -11,7 +11,7 @@
     padding: 2px 10px
     position: relative
 
-    .multi-select-option
+    .multi-select-option-selected
         display: inline-block
         background-color: #d9d9d9
         padding: 3px 25px 3px 10px
@@ -38,17 +38,40 @@
 
     .choice
         position: absolute
-        right: 10px
+        right: 5px
         top: 0
         bottom: 0
         margin: auto
+        padding-left: 10px
+        padding-right: 10px
+        cursor: pointer
 
+        &:hover
+            i
+                color: #636363
         i
             color: #8f8f8f
             line-height: 1.8
             font-size: 1.3rem
 
-            &:hover
-                color: #636363
-                cursor: pointer
+    .multi-select-helper
+        position: absolute
+        z-index: 10
+        left: 0
+        width: 100%
+        height: auto
+        max-height: 300px
+        top: 100%
+        background: #fff
+        border: 1px solid #d5d5d5
+        overflow-y: auto
+
+
+        .multi-select-option
+            padding: 8px 20px
+            border-bottom: 1px solid #ececec
+            cursor: pointer
+
+
+
 

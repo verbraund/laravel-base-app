@@ -70168,15 +70168,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormMultiSelect; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormMultiSelectOption */ "./resources/assets/admin/js/components/form/FormMultiSelectOption.js");
+/* harmony import */ var _FormMultiSelectOptionSelected__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormMultiSelectOptionSelected */ "./resources/assets/admin/js/components/form/FormMultiSelectOptionSelected.js");
+/* harmony import */ var _FormMultiSelectHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormMultiSelectHelper */ "./resources/assets/admin/js/components/form/FormMultiSelectHelper.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 function FormMultiSelect(_ref) {
   var title = _ref.title,
       description = _ref.description,
-      options = _ref.options;
+      items = _ref.items,
+      selected = _ref.selected;
   var multiSelectId = 'FormMultiSelect-' + Math.random().toString(36).substr(2);
   var helperId = 'FormMultiSelectHelper-' + Math.random().toString(36).substr(2);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(items),
+      _useState2 = _slicedToArray(_useState, 2),
+      options = _useState2[0],
+      setOptions = _useState2[1];
+
+  console.log(items);
+  console.log(options);
+
+  var showAll = function showAll() {};
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -70184,20 +70210,55 @@ function FormMultiSelect(_ref) {
   }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "multi-select",
     id: multiSelectId
-  }, options.map(function (o, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, selected.map(function (o, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormMultiSelectOptionSelected__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: i,
       title: o.title,
       value: o.value
     });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormMultiSelectHelper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    options: options,
+    selected: selected
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "choice"
+    className: "choice",
+    onClick: showAll
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-angle-down"
   }))), description && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     id: helperId,
     className: "form-text text-muted"
   }, description));
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin/js/components/form/FormMultiSelectHelper.js":
+/*!****************************************************************************!*\
+  !*** ./resources/assets/admin/js/components/form/FormMultiSelectHelper.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormMultiSelectHelper; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormMultiSelectOption */ "./resources/assets/admin/js/components/form/FormMultiSelectOption.js");
+
+
+function FormMultiSelectHelper(_ref) {
+  var options = _ref.options,
+      selected = _ref.selected;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "multi-select-helper"
+  }, options.map(function (e, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormMultiSelectOption__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      value: e.value,
+      title: e.title,
+      key: i
+    });
+  }));
 }
 
 /***/ }),
@@ -70220,6 +70281,29 @@ function FormMultiSelectOption(_ref) {
       value = _ref.value;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "multi-select-option"
+  }, title);
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin/js/components/form/FormMultiSelectOptionSelected.js":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/admin/js/components/form/FormMultiSelectOptionSelected.js ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormMultiSelectOptionSelected; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function FormMultiSelectOptionSelected(_ref) {
+  var title = _ref.title,
+      value = _ref.value;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "multi-select-option-selected"
   }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-times"
   }));
@@ -71050,24 +71134,39 @@ function NewsEdit() {
       categories = _useState2[0],
       setCategories = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentCategories = _useState4[0],
+      setCurrentCategories = _useState4[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/admin/news/' + id + '/edit', {
-      params: {}
-    }).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/admin/news/' + id + '/edit').then(function (response) {
       if (_typeof(response.data.data) === 'object' && response.data.data !== null) {
         title.current.value = response.data.data.title;
         slug.current.value = response.data.data.slug;
         description.current.value = response.data.data.description;
         text.current.value = response.data.data.text;
-        setCategories(response.data.data.categories.map(function (item) {
+        setCurrentCategories(response.data.data.categories.map(function (item) {
           return {
             value: item.id,
             title: item.title
           };
-        })); //console.log(categories);
+        }));
       }
     })["catch"](function (_) {
       history.push('/admin/404');
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/admin/news/categories').then(function (response) {
+      if (_typeof(response.data.data) === 'object' && response.data.data !== null) {
+        setCategories(response.data.data.map(function (item) {
+          return {
+            value: item.id,
+            title: item.title
+          };
+        }));
+      }
+    })["catch"](function (e) {
+      console.error(e); //history.push('/admin/404');
     });
   }, []);
 
@@ -71111,11 +71210,30 @@ function NewsEdit() {
     reference: text,
     title: 'Основной текст',
     rows: 10
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    title: 'Опубликовать'
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormMultiSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
     title: 'Категории',
-    options: categories
+    items: categories,
+    selected: currentCategories
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_form_FormCheckbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: 'Опубликовать'
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

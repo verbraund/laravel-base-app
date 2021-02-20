@@ -42,7 +42,7 @@ Route::middleware(['auth.ips'])->group(function(){
             Route::post('news',[App\Http\Controllers\Admin\Api\V1\Media\NewsController::class, 'store']);
 
             //NewsCategory
-            Route::get('categories',[App\Http\Controllers\Admin\Api\V1\Media\NewsCategoryController::class, 'index']);
+            Route::get('news/categories',[App\Http\Controllers\Admin\Api\V1\Media\NewsCategoryController::class, 'index']);
 
 
         });

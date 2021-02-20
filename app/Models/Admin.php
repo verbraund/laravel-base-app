@@ -19,6 +19,7 @@ class Admin extends Model implements
     use HasFactory;
 
     protected $fillable = [
+        'role_id',
         'login',
         'password',
         'tfa',
@@ -29,6 +30,11 @@ class Admin extends Model implements
         'password',
         'tfa_code'
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 
     public function refreshTokens()
     {

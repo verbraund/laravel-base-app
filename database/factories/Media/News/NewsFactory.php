@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Media\News;
 
+use App\Models\Admin;
 use App\Models\Media\News\News;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -24,9 +25,11 @@ class NewsFactory extends Factory
     {
         $title = $this->faker->text(100);
         return [
+            'user_id' => $this->faker->randomElement(
+                Admin::all()->pluck('id')->toArray()
+            ),
             'title' => $title,
             'slug' => Str::slug($title),
-            'user_id' => 1,
             'description' => $this->faker->text(200),
             'text' => $this->faker->text(1000),
             'published_at' => $this->faker->dateTime

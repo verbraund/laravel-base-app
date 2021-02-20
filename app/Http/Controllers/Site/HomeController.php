@@ -21,6 +21,7 @@ class HomeController extends Controller
     {
 
 
+        dd(Admin::all()->pluck('id'));
         Admin::find(1)->can('view',News::class);
         //User::find(1)->can('view',News::find(1));
         //auth()->user()->can('view',News::find(1));
