@@ -15,7 +15,7 @@ class CreateRefreshTokensTable extends Migration
     {
         Schema::create('refresh_tokens', function (Blueprint $table) {
             $table->id();
-            $table->integer('admin_id')->default(0)->index();
+            $table->unsignedBigInteger('user_id')->default(0)->index();
             $table->string('token', 64)->unique();
             $table->string('user_agent');
             $table->ipAddress('ip_address');
@@ -23,6 +23,8 @@ class CreateRefreshTokensTable extends Migration
             $table->softDeletes();
             $table->timestamps();
             $table->charset = 'utf8mb4';
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

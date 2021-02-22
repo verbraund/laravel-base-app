@@ -4,12 +4,12 @@
 namespace App\Contracts\Api\Auth\Token;
 
 
-use App\Models\Admin;
+use App\Models\User;
 
 interface Access
 {
 
-    public function createToken(Admin $admin, $type = '');
+    public function createToken(User $user, $type = '');
 
     public function isType($token, $type);
 

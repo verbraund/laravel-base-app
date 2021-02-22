@@ -3,20 +3,20 @@
 
 namespace App\Contracts\Api\Auth\Token;
 
-use App\Models\Admin;
+use App\Models\User;
 
 interface Refresh
 {
 
-    public function createToken(Admin $admin);
+    public function createToken(User $user);
 
-    public function regenerateToken(Admin $admin);
+    public function regenerateToken(User $user);
 
     public function isNotExpired($token);
 
     public function isValid($token);
 
-    public function removeTokens(Admin $admin);
+    public function removeTokens(User $user);
 
     public function getSubjectId($token);
 

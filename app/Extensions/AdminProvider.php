@@ -9,9 +9,9 @@ use Illuminate\Contracts\Hashing\Hasher as HasherContract;
 class AdminProvider extends EloquentUserProvider
 {
 
-    public function __construct(HasherContract $hasher, $admin)
+    public function __construct(HasherContract $hashService, $model)
     {
-        parent::__construct($hasher, $admin);
+        parent::__construct($hashService, $model);
     }
 
 }

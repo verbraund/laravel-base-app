@@ -3,7 +3,7 @@
 namespace App\Services\Api\Auth;
 
 use App\Exceptions\Auth\JOSE\JoseException;
-use App\Models\Admin;
+use App\Models\User;
 use App\Services\Api\Auth\JOSE\JWT;
 use App\Services\Api\Auth\JOSE\JWTParser;
 use App\Contracts\Api\Auth\Token\Access;
@@ -13,13 +13,13 @@ class JWTService implements Access
 {
 
 
-    public function createToken(Admin $admin, $type = '')
+    public function createToken(User $user, $type = '')
     {
         try{
 
             $jwt = new JWT();
             $jwt->addToPayload([
-                'id' => $admin->id,
+                'id' => $user->id,
                 'ua' => $this->getUserAgent(),
                 'ip' => $this->getIp(),
                 'tp' => $type

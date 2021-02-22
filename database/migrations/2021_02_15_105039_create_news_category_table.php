@@ -16,10 +16,11 @@ class CreateNewsCategoryTable extends Migration
         Schema::create('news_category', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('news_id');
-            $table->foreign('news_id')->references('id')->on('news');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('news_categories');
             $table->timestamps();
+
+            $table->foreign('news_id')->references('id')->on('news');
+            $table->foreign('category_id')->references('id')->on('news_categories');
         });
     }
 

@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Services\Api\Auth\JOSE\JWT;
 use App\Services\Api\Auth\JOSE\JWS;
 use App\Services\Api\Auth\JWTService;
-use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Str;
 
@@ -21,8 +20,17 @@ class HomeController extends Controller
     {
 
 
-        dd(Admin::all()->pluck('id'));
-        Admin::find(1)->can('view',News::class);
+
+        $user = User::find(1);
+
+        $method = 'create';
+        $resource = News::class;
+
+        dd($user->role->permissions()->wherePivot('resource_id',1)->where('name',$method)->exists());
+        //dd($user->role->resources()->name('App\Models\Media\News\News')->get());
+
+
+        //dd($user->role->hasPermissionForResource(1,1)->get());
         //User::find(1)->can('view',News::find(1));
         //auth()->user()->can('view',News::find(1));
 
@@ -44,7 +52,7 @@ class HomeController extends Controller
 //
 //        $g = new \Google\Authenticator\GoogleAuthenticator();
 //
-//        $user = 'admin';
+//        $user = 'test';
 //        $salt = sha1(time().$user);
 //        $secret = $user.$salt;
 //        $secret = $g->generateSecret();

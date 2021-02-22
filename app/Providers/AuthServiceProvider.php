@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Contracts\Api\Auth\Token\Refresh;
 use App\Contracts\Api\Auth\Token\Access;
 use App\Extensions\AdminProvider;
-use App\Models\Admin;
-use Illuminate\Support\Str;
+use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          \App\Models\Media\News\News::class => \App\Policies\Media\News\NewsPolicy::class,
-         //\App\Models\Admin::class => \App\Policies\AdminPolicy::class,
+         //\App\Models\User::class => \App\Policies\UserPolicy::class,
     ];
 
     /**
@@ -37,13 +36,8 @@ class AuthServiceProvider extends ServiceProvider
         Auth::provider('admin', function($app){
             return new AdminProvider(
                 $app[HasherContract::class],
-                Admin::class
+                User::class
             );
-//            return new AdminProvider(
-//                $app[Admin::class],
-//                $app[Refresh::class],
-//                $app[Access::class]
-//            );
         });
 
         Auth::extend('jwt', function ($app, $name, array $config) {

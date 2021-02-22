@@ -18,13 +18,14 @@ class CreateNewsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('user_id')->default(0);
-            $table->foreign('user_id')->references('id')->on('admins');
             $table->string('title');
             $table->string('slug');
             $table->string('description');
             $table->text('text');
             $table->dateTime('published_at')->default(null);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         DB::statement('ALTER TABLE `news` ADD FULLTEXT INDEX news (title,slug,description,text)');

@@ -4,7 +4,7 @@
 namespace App\Services\Api\Auth;
 
 use App\Contracts\Api\Auth\Token\Refresh;
-use App\Models\Admin;
+use App\Models\User;
 use App\Models\Auth\RefreshToken;
 use Illuminate\Contracts\Hashing\Hasher;
 use Carbon\Carbon;
@@ -23,11 +23,11 @@ class SimpleToken implements Refresh
         $this->hashManager = $hashManager;
     }
 
-    public function createToken(Admin $admin)
+    public function createToken(User $user)
     {
         $token = $this->generateHash();
         $this->model->create([
-            'admin_id' => $admin->id,
+            'user_id' => $user->id,
             'token' => $token,
             'user_agent' => $this->getUserAgent(),
             'ip_address' => $this->getIpAddress(),
@@ -36,15 +36,15 @@ class SimpleToken implements Refresh
         return $token;
     }
 
-    public function regenerateToken(Admin $admin)
+    public function regenerateToken(User $user)
     {
-        $this->model->where('admin_id', $admin->id)->delete();
-        return $this->createToken($admin);
+        $this->model->where('user_id', $user->id)->delete();
+        return $this->createToken($user);
     }
 
-    public function removeTokens(Admin $admin)
+    public function removeTokens(User $user)
     {
-        $this->model->where('admin_id', $admin->id)->delete();
+        $this->model->where('user_id', $user->id)->delete();
     }
 
     public function isNotExpired($token)
@@ -72,7 +72,7 @@ class SimpleToken implements Refresh
     {
         $token = $this->model->token($token)->first();
         if($token){
-            return (int)$token->admin_id;
+            return (int)$token->user_id;
         }
         return false;
     }

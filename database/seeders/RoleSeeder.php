@@ -15,19 +15,19 @@ class RoleSeeder extends Seeder
     {
 
         \App\Models\Role::factory()
-            ->has(\App\Models\Admin::factory()->count(1), 'users')
+            ->has(\App\Models\User::factory()->count(1), 'users')
             ->create(['name' => 'SuperAdmin']);
 
         \App\Models\Role::factory()
-            ->has(\App\Models\Admin::factory()->count(2), 'users')
+            ->has(\App\Models\User::factory()->count(2), 'users')
             ->create(['name' => 'Admin']);
 
         \App\Models\Role::factory()
-            ->has(\App\Models\Admin::factory()->count(3), 'users')
+            ->has(\App\Models\User::factory()->count(3), 'users')
             ->create(['name' => 'Manager']);
 
         \App\Models\Role::factory()
-            ->has(\App\Models\Admin::factory()->count(6),'users')
+            ->has(\App\Models\User::factory()->count(6),'users')
             ->create(['name' => 'User']);
     }
 }

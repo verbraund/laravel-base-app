@@ -18,8 +18,9 @@ class CreateNewsCategoriesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->unsignedBigInteger('user_id')->default(0);
-            $table->foreign('user_id')->references('id')->on('admins');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }

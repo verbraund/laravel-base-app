@@ -52,10 +52,10 @@ class JwtGuard implements Guard
             ){
                 if($id = $this->accessTokenService->getSubjectId($accessToken)){
 
-                    $admin = $this->provider->retrieveById($id);
+                    $user = $this->provider->retrieveById($id);
 
-                    if(!is_null($admin)){
-                        $this->setUser($admin);
+                    if(!is_null($user)){
+                        $this->setUser($user);
                         return true;
                     }
                 }
@@ -70,9 +70,9 @@ class JwtGuard implements Guard
                 $this->refreshTokenService->isValid($refreshToken)
             ){
                 if($id = $this->refreshTokenService->getSubjectId($refreshToken)){
-                    $admin = $this->provider->retrieveById($id);
-                    if(!is_null($admin)){
-                        $this->setUser($admin);
+                    $user = $this->provider->retrieveById($id);
+                    if(!is_null($user)){
+                        $this->setUser($user);
                         return true;
                     }
                 }

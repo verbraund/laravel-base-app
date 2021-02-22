@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Admin;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AdminFactory extends Factory
+class PermissionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Admin::class;
+    protected $model = Permission::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +22,8 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'login' => 'user_' . $this->faker->unique()->word(),
-            'password' => '$2y$10$jBndEfRKb/NvVhecsHlHsOuGy/FR9bDRJASRvkGHMWgbKmfKzN.Vy', // 123
-            'tfa' => 0,
-            'tfa_code' => null,
+            'name' => $this->faker->unique()->word(),
+            'label' => $this->faker->unique()->word()
         ];
     }
 }

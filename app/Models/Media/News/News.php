@@ -3,7 +3,7 @@
 namespace App\Models\Media\News;
 
 use App\Extensions\Searchable;
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,6 +40,6 @@ class News extends Model
 
     public function author()
     {
-        return $this->belongsTo(Admin::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 }

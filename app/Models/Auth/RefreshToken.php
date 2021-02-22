@@ -4,7 +4,7 @@ namespace App\Models\Auth;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RefreshToken extends Model
@@ -13,7 +13,7 @@ class RefreshToken extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'admin_id',
+        'user_id',
         'token',
         'user_agent',
         'ip_address',
@@ -21,8 +21,8 @@ class RefreshToken extends Model
     ];
 
 
-    public function admin(){
-        return $this->belongsTo(Admin::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function scopeToken($query, $value){

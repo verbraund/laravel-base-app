@@ -119,8 +119,8 @@ class LoginController extends Controller
 
     public function logout()
     {
-        $admin = $this->getCurrentUser();
-        $this->refreshTokenService->removeTokens($admin);
+        $user = $this->getCurrentUser();
+        $this->refreshTokenService->removeTokens($user);
 
         return new LogoutResponse;
     }
