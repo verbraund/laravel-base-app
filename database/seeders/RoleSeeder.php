@@ -16,11 +16,11 @@ class RoleSeeder extends Seeder
 
         \App\Models\Role::factory()
             ->has(\App\Models\User::factory()->count(1), 'users')
-            ->create(['name' => 'SuperAdmin']);
+            ->create(['name' => \App\Models\Role::SUPER_ADMIN_NAME]);
 
         \App\Models\Role::factory()
             ->has(\App\Models\User::factory()->count(2), 'users')
-            ->create(['name' => 'Admin']);
+            ->create(['name' => \App\Models\Role::ADMIN_NAME]);
 
         \App\Models\Role::factory()
             ->has(\App\Models\User::factory()->count(3), 'users')

@@ -11,6 +11,7 @@ use App\Services\Api\Auth\JOSE\JWT;
 use App\Services\Api\Auth\JOSE\JWS;
 use App\Services\Api\Auth\JWTService;
 use App\Models\User;
+use App\Models\Resource;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
@@ -26,7 +27,14 @@ class HomeController extends Controller
         $method = 'create';
         $resource = News::class;
 
-        dd($user->role->permissions()->wherePivot('resource_id',1)->where('name',$method)->exists());
+
+        dd($user->role->name);
+        dd($user->role->resource($resource)->hasPermission($method));
+
+
+        //dd($user->role->permission($method)->wherePivot('resource_id',1)->get());
+        //dd($user->role->permissions()->test()->get());
+        //dd($user->role->permissions()->wherePivot('resource_id',1)->where('name',$method)->exists());
         //dd($user->role->resources()->name('App\Models\Media\News\News')->get());
 
 

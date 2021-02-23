@@ -19,4 +19,9 @@ class Resource extends Model
         return $query->where('name', $name);
     }
 
+    public static function findIdByName($name)
+    {
+        return (int)self::name($name)->value('id');
+    }
+
 }

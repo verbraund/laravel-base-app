@@ -13,7 +13,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Permission::factory()->create(['name' => 'viewAny']);
         \App\Models\Permission::factory()->create(['name' => 'view']);
         \App\Models\Permission::factory()->create(['name' => 'create']);
         \App\Models\Permission::factory()->create(['name' => 'update']);

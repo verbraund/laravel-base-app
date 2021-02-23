@@ -19,5 +19,9 @@ class Permission extends Model
         return $this->belongsToMany(Role::class);
     }
 
+    public function scopeHasPermission($query, $name)
+    {
+        return $query->where('name',$name)->exists();
+    }
 
 }
