@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model implements
     AuthenticatableContract,
@@ -16,7 +17,8 @@ class User extends Model implements
     CanResetPasswordContract,
     TFAUser
 {
-    use HasFactory;
+    use HasFactory,
+        SoftDeletes;
 
     protected $fillable = [
         'role_id',

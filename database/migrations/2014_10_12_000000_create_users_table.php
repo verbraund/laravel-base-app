@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('tfa')->default(false);
             $table->string('tfa_code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
             $table->charset = 'utf8mb4';
 
             //$table->foreign('role_id')->references('id')->on('roles');

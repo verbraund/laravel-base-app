@@ -6,11 +6,13 @@ use App\Extensions\Searchable;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model
 {
     use HasFactory,
-        Searchable;
+        Searchable,
+        SoftDeletes;
 
 
     protected $fillable = [
@@ -19,7 +21,6 @@ class News extends Model
         'description',
         'text',
         'published_at',
-        'user_id'
     ];
 
     public $sortable = [

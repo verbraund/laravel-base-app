@@ -28,12 +28,6 @@ class MediaService implements Media
                 $this->getModel()->newQuery()
             )
         );
-
-//        return $this->paginator->paginate(
-//            $this->filters->apply(
-//                $this->getModel()->newQuery(), $request
-//            )
-//        );
     }
 
     public function getById($id)
@@ -70,7 +64,7 @@ class MediaService implements Media
             ->firstOrFail();
     }
 
-    protected function getModel()
+    public function getModel()
     {
         return new $this->model;
     }

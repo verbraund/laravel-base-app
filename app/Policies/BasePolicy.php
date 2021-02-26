@@ -14,37 +14,51 @@ abstract class BasePolicy
 
     public function viewAny(User $user)
     {
-        return $this->hasPermission($user, 'view') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'view') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function view(User $user, $model)
     {
-        return $this->hasPermission($user, 'view') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'view') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function create(User $user)
     {
-        return $this->hasPermission($user, 'create') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'create') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function update(User $user, $model)
     {
-        return $this->hasPermission($user, 'update') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'update') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function delete(User $user, $model)
     {
-        return $this->hasPermission($user, 'delete') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'delete') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function restore(User $user, $model)
     {
-        return $this->hasPermission($user, 'delete') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'delete') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     public function forceDelete(User $user, $model)
     {
-        return $this->hasPermission($user, 'delete') || $this->isAdmin($user);
+        return $this->hasPermission($user, 'delete') ||
+            $this->isAdmin($user) ||
+            $this->isSuperAdmin($user);
     }
 
     protected function hasPermission($user, $name)

@@ -16,4 +16,11 @@ class NewsService extends MediaService implements NewsContract
     {
         return $this->getBy('slug', $slug);
     }
+
+    public function create($data)
+    {
+        parent::create($data);
+
+
+    }
 }

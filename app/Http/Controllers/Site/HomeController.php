@@ -24,12 +24,27 @@ class HomeController extends Controller
 
         $user = User::find(1);
 
-        $method = 'create';
-        $resource = News::class;
+        $data = [
+            'description' => "123asdasd",
+            'slug' => "asdasd",
+            'text' => "asdasdas",
+            'title' => "asdasd",
+        ];
+
+        $model = new News;
+
+        $model->fill($data);
+
+        $model->author()->associate($user);
+        $model->save();
+
+        dd($model);
 
 
-        dd($user->role->name);
-        dd($user->role->resource($resource)->hasPermission($method));
+
+
+//        dd($user->role->name);
+//        dd($user->role->resource($resource)->hasPermission($method));
 
 
         //dd($user->role->permission($method)->wherePivot('resource_id',1)->get());

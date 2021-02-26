@@ -19,4 +19,6 @@ interface Media
 
     public function update($id, $data);
 
+    public function getModel();
+
 }

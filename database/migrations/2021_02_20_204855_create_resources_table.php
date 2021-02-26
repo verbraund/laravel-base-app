@@ -18,6 +18,7 @@ class CreateResourcesTable extends Migration
             $table->string('name')->unique();
             $table->string('label')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
