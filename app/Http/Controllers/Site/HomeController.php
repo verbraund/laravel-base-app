@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Contracts\Api\Auth\TFA;
 use App\Http\Controllers\Controller;
 use App\Models\Media\News\News;
+use App\Models\Media\News\NewsCategory;
 use App\Services\Api\Auth\JOSE\JWTParser;
 use Illuminate\Http\Request;
 use App\Services\Api\Auth\JOSE\JWT;
@@ -20,25 +21,42 @@ class HomeController extends Controller
     public function index(Request $request, JWTService $JWTService, TFA $TFAService)
     {
 
+        //dd(News::find(173)->user);
 
 
         $user = User::find(1);
+
+        $categoryOne = NewsCategory::find(1);
+        $categoryTwo = NewsCategory::find(2);
 
         $data = [
             'description' => "123asdasd",
             'slug' => "asdasd",
             'text' => "asdasdas",
             'title' => "asdasd",
+            'categories' => "[1,2]",
         ];
 
         $model = new News;
 
-        $model->fill($data);
+        $news = $model->newQuery()->create($data);
+        $news->user()->associate($user);
+        //$news->categories()->attach([150,151]);
+        $news->save();
 
-        $model->author()->associate($user);
-        $model->save();
+       dd($news);
 
-        dd($model);
+        //$model->user()->associate($user);
+        //$model->save();
+
+//        $model = new News;
+//
+//        $model->fill($data);
+//
+//        $model->user()->associate($user);
+//        $model->save();
+
+        //dd($model);
 
 
 

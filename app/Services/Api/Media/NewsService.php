@@ -19,8 +19,19 @@ class NewsService extends MediaService implements NewsContract
 
     public function create($data)
     {
-        parent::create($data);
+        $news = parent::create($data);
+        $news->user()->associate(auth()->user());
+        $news->categories()->sync($data['categories']);
+        $news->save();
+        return $news;
+    }
 
-
+    public function update($id, $data)
+    {
+        $news = parent::update($id, $data);
+        $news->user()->associate(auth()->user());
+        $news->categories()->sync($data['categories']);
+        $news->save();
+        return $news;
     }
 }

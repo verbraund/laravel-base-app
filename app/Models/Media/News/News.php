@@ -36,11 +36,12 @@ class News extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(NewsCategory::class, 'news_category', 'news_id', 'category_id');
+        return $this->belongsToMany(NewsCategory::class, 'news_category', 'news_id', 'category_id')
+            ->withTimestamps();
     }
 
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

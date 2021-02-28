@@ -1,9 +1,9 @@
 import React from 'react';
+import {generateInputAndHelperIds} from "../../utils/form";
 
 export default function FormCheckbox({title, description}){
 
-    const checkboxId = 'FormCheckbox-' + Math.random().toString(36).substr(2);
-    const helperId = 'FormCheckboxHelper-' + Math.random().toString(36).substr(2);
+    const [checkboxId, helperId] = generateInputAndHelperIds('FormCheckbox');
 
     return (
         <div className="form-group form-check">

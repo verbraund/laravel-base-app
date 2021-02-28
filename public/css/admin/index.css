@@ -15712,9 +15712,10 @@ body,
   text-align: left;
   padding: 2px 10px;
   position: relative;
+  outline: none;
 }
 
-.multi-select .multi-select-option-selected {
+.multi-select .option-selected {
   display: inline-block;
   background-color: #d9d9d9;
   padding: 3px 25px 3px 10px;
@@ -15723,16 +15724,18 @@ body,
   position: relative;
 }
 
-.multi-select .multi-select-option-selected:hover {
-  background-color: #c2c2c2;
-}
-
-.multi-select .multi-select-option-selected:hover i {
-  color: #5a5959;
+.multi-select .option-selected:hover {
+  background-color: #d95b62;
+  color: #ffffff;
   cursor: pointer;
 }
 
-.multi-select .multi-select-option-selected i {
+.multi-select .option-selected:hover i {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.multi-select .option-selected i {
   position: absolute;
   right: 7px;
   top: 0;
@@ -15771,16 +15774,60 @@ body,
   width: 100%;
   height: auto;
   max-height: 300px;
-  top: 100%;
   background: #fff;
   border: 1px solid #d5d5d5;
   overflow-y: auto;
 }
 
-.multi-select .multi-select-helper .multi-select-option {
+.multi-select .multi-select-helper.bottom {
+  top: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.multi-select .multi-select-helper.top {
+  bottom: 100%;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.multi-select .multi-select-helper .helper-option {
   padding: 8px 20px;
   border-bottom: 1px solid #ececec;
   cursor: pointer;
+  position: relative;
+}
+
+.multi-select .multi-select-helper .helper-option:hover {
+  background-color: #28d98a;
+}
+
+.multi-select .multi-select-helper .helper-option:hover i {
+  display: block;
+  color: #115428;
+}
+
+.multi-select .multi-select-helper .helper-option.selected {
+  background-color: #d9d9d9;
+}
+
+.multi-select .multi-select-helper .helper-option.selected:hover {
+  background-color: #d95b62;
+  color: #ffffff;
+}
+
+.multi-select .multi-select-helper .helper-option.selected:hover i {
+  display: block;
+  color: #ffffff;
+}
+
+.multi-select .multi-select-helper .helper-option i {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  display: none;
+  line-height: 2.3;
+  font-size: 1rem;
 }
 
 .grid tr .sortable {

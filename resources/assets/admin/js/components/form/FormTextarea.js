@@ -1,9 +1,9 @@
 import React from 'react';
+import {generateInputAndHelperIds} from "../../utils/form";
 
 export default function FormTextarea({reference, title, description, rows}){
 
-    const textareaId = 'FormTextarea-' + Math.random().toString(36).substr(2);
-    const helperId = 'FormTextareaHelper-' + Math.random().toString(36).substr(2);
+    const [textareaId, helperId] = generateInputAndHelperIds('FormTextarea');
 
     return (
         <div className="form-group">

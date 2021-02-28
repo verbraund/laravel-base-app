@@ -3,6 +3,7 @@ import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 import Editor from '../../vendor/ckeditor';
+import {generateInputAndHelperIds} from "../../utils/form";
 
 
 export default function FormTextareaEditor({reference, title, description, rows}){
@@ -41,15 +42,17 @@ export default function FormTextareaEditor({reference, title, description, rows}
         });
     };
 
+    const [editorId] = generateInputAndHelperIds('FormTextarea');
 
     return (
         <div className="form-group">
             <label>{ title }</label>
 
             <CKEditor
+                id={editorId}
                 editor={ Editor }
                 config={ editorConfiguration }
-                data={"<p>Hello from CKEditor 5!</p>"}
+                data={reference.current}
                 onReady={ editor => setCustomSettings(editor) }
             />
 

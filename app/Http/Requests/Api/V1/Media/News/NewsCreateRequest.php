@@ -20,7 +20,9 @@ class NewsCreateRequest extends BaseRequest
             'title' => 'required|string|min:3|max:255',
             'slug' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:400',
-            'text' => 'nullable'
+            'text' => 'nullable',
+            'categories' => 'required|array|min:1',
+            'categories.*' => 'required|integer|distinct|min:0',
         ];
     }
 

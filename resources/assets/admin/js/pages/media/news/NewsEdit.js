@@ -10,6 +10,8 @@ import FormTextareaEditor from "../../../components/form/FormTextareaEditor";
 
 export default function NewsEdit(){
 
+    console.log('render NewsEdit');
+
     let { id } = useParams();
     let history = useHistory();
 
@@ -21,6 +23,8 @@ export default function NewsEdit(){
     const [categories, setCategories] = useState([]);
     const [currentCategories, setCurrentCategories] = useState([]);
 
+    const currentCategoriesRef = useRef([]);
+
 
     useEffect(() => {
 
@@ -29,10 +33,15 @@ export default function NewsEdit(){
                 title.current.value = response.data.data.title;
                 slug.current.value = response.data.data.slug;
                 description.current.value = response.data.data.description;
-                text.current.value = response.data.data.text;
-                setCurrentCategories(response.data.data.categories.map(item => {
+                text.current = response.data.data.text;
+                // setCurrentCategories(response.data.data.categories.map(item => {
+                //     return {value: item.id, title: item.title};
+                // }));
+                currentCategoriesRef.current = response.data.data.categories.map(item => {
                     return {value: item.id, title: item.title};
-                }));
+                });
+
+                console.log('get cat from api');
             }
 
         }).catch(r => {
@@ -52,8 +61,6 @@ export default function NewsEdit(){
             //history.push('/admin/404');
         });
 
-
-
     }, []);
 
 
@@ -64,14 +71,15 @@ export default function NewsEdit(){
                     title: title.current.value,
                     slug: slug.current.value,
                     description: description.current.value,
-                    text: text.current.value,
+                    text: text.current,
+                    categories: currentCategories.map(c => c.value)
                 }
         ).then(function (response) {
             if(typeof response.data.data === 'object' && response.data.data !== null){
                 title.current.value = response.data.data.title;
                 slug.current.value = response.data.data.slug;
                 description.current.value = response.data.data.description;
-                text.current.value = response.data.data.text;
+                text.current = response.data.data.text;
                 //setNews(response.data.data);
             }
 
@@ -80,6 +88,8 @@ export default function NewsEdit(){
             //history.push('/admin/404');
         });
     };
+
+    console.log('current cat NewsEdit = ' + JSON.stringify(currentCategoriesRef.current));
 
     return (
         <div>
@@ -96,20 +106,24 @@ export default function NewsEdit(){
 
                     <FormTextareaEditor reference={text} title={'Основной текст'} rows={10} />
 
+                    <FormMultiSelect
+                        title={'Категории'}
+                        options={categories}
+                        selected={currentCategories}
+                        setSelected={setCurrentCategories}
+                        selectedRef={currentCategoriesRef}
+                    />
 
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckbox title={'Опубликовать'} />
 
-                    <FormMultiSelect title={'Категории'} items={categories} selected={currentCategories}/>
-
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
                 </div>
                 <div className="card-body">
                     <a className="btn btn-primary" onClick={save}>Сохранить</a>

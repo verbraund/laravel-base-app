@@ -1,9 +1,9 @@
 import React from 'react';
+import {generateInputAndHelperIds} from '../../utils/form';
 
 export default function FormInputText({reference, title, description}){
 
-    const inputId = 'FormInputText-' + Math.random().toString(36).substr(2);
-    const helperId = 'FormInputTextHelper-' + Math.random().toString(36).substr(2);
+    const [inputId, helperId] = generateInputAndHelperIds('FormInputText');
 
     return (
         <div className="form-group">

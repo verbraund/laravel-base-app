@@ -1,9 +1,9 @@
 import React from 'react';
+import {generateInputAndHelperIds} from "../../utils/form";
 
 export default function FormSelect({title, description, options}){
 
-    const selectId = 'FormSelect-' + Math.random().toString(36).substr(2);
-    const helperId = 'FormSelectHelper-' + Math.random().toString(36).substr(2);
+    const [selectId, helperId] = generateInputAndHelperIds('FormSelect');
 
     return (
         <div className="form-group">
