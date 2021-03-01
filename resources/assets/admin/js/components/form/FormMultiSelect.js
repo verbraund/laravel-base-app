@@ -4,7 +4,7 @@ import FormMultiSelectHelper from "./FormMultiSelectHelper";
 import {generateInputAndHelperIds} from "../../utils/form";
 
 
-export default function FormMultiSelect({title, description, options, selected, setSelected}){
+export default function FormMultiSelect({title, description, options, selected, selectedRef}){
 
     const [multiSelectId, helperId] = generateInputAndHelperIds('FormMultiSelect');
 
@@ -14,24 +14,26 @@ export default function FormMultiSelect({title, description, options, selected, 
     const helperPositionYTypeClass = useRef('bottom');
 
     const [localSelected, setLocalSelected] = useState([]);
+    const [localOptions, setLocalOptions] = useState([]);
 
 
     const removeFromSelected = (value) => {
+        selectedRef.current = localSelected.filter(e => e.value !== value);
         setLocalSelected(localSelected.filter(e => e.value !== value));
     };
 
     const addToSelected = (value, title) => {
+        selectedRef.current = localSelected.concat([{value: value, title: title}]);
         setLocalSelected(localSelected.concat([{value: value, title: title}]));
-    };
-
-    const save = () => {
-        setShowHelper(false);
-        setSelected(localSelected);
     };
 
     useEffect(() => {
         setLocalSelected(selected);
     }, [selected]);
+
+    useEffect(() => {
+        setLocalOptions(options);
+    }, [options]);
 
 
 
@@ -64,7 +66,7 @@ export default function FormMultiSelect({title, description, options, selected, 
                 className="multi-select"
                 id={multiSelectId}
                 onClick={handleShowAll}
-                onBlur={save}
+                onBlur={() => {setShowHelper(false);}}
                 tabIndex="0"
             >
 
@@ -73,7 +75,7 @@ export default function FormMultiSelect({title, description, options, selected, 
                 })}
 
                 {showHelper && <FormMultiSelectHelper
-                    options={options}
+                    options={localOptions}
                     selected={localSelected}
                     remove={removeFromSelected}
                     add={addToSelected}

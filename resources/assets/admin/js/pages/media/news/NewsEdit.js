@@ -7,6 +7,7 @@ import FormCheckbox from "../../../components/form/FormCheckbox";
 import FormSelect from "../../../components/form/FormSelect";
 import FormMultiSelect from "../../../components/form/FormMultiSelect";
 import FormTextareaEditor from "../../../components/form/FormTextareaEditor";
+import {useForceUpdate} from "../../../utils/other";
 
 export default function NewsEdit(){
 
@@ -20,9 +21,11 @@ export default function NewsEdit(){
     const description = useRef('');
     const text = useRef('');
 
-    const [categories, setCategories] = useState([]);
-    const [currentCategories, setCurrentCategories] = useState([]);
+    const categories = useRef([]);
+    const currentCategories = useRef([]);
+    const [forceUpdateCategories, categoriesKey] = useForceUpdate();
 
+    const publishAt = useRef(false);
 
     useEffect(() => {
 
@@ -32,12 +35,11 @@ export default function NewsEdit(){
                 slug.current.value = response.data.data.slug;
                 description.current.value = response.data.data.description;
                 text.current = response.data.data.text;
-                // setCurrentCategories(response.data.data.categories.map(item => {
-                //     return {value: item.id, title: item.title};
-                // }));
-                setCurrentCategories(response.data.data.categories.map(item => {
+                currentCategories.current = response.data.data.categories.map(item => {
                     return {value: item.id, title: item.title};
-                }));
+                });
+
+                forceUpdateCategories();
 
             }
 
@@ -49,9 +51,10 @@ export default function NewsEdit(){
 
         axios.get('/api/admin/news/categories').then(function (response) {
             if(typeof response.data.data === 'object' && response.data.data !== null){
-                setCategories(response.data.data.map(item => {
+                categories.current = response.data.data.map(item => {
                     return {value: item.id, title: item.title};
-                }));
+                });
+                forceUpdateCategories();
             }
         }).catch(e => {
             console.error(e);
@@ -69,7 +72,7 @@ export default function NewsEdit(){
                 slug: slug.current.value,
                 description: description.current.value,
                 text: text.current,
-                categories: currentCategories.map(c => c.value)
+                categories: currentCategories.current.map(c => c.value)
             }
         ).then(function (response) {
             if(typeof response.data.data === 'object' && response.data.data !== null){
@@ -94,9 +97,10 @@ export default function NewsEdit(){
 
                     <FormMultiSelect
                         title={'Категории'}
-                        options={categories}
-                        selected={currentCategories}
-                        setSelected={setCurrentCategories}
+                        options={categories.current}
+                        selected={currentCategories.current}
+                        selectedRef={currentCategories}
+                        key={categoriesKey}
                     />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
@@ -107,14 +111,6 @@ export default function NewsEdit(){
 
                     <FormTextareaEditor reference={text} title={'Основной текст'} rows={10} />
 
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
-                    <FormCheckbox title={'Опубликовать'} />
                     <FormCheckbox title={'Опубликовать'} />
 
                 </div>
