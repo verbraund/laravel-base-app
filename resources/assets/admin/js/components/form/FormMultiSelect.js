@@ -4,32 +4,36 @@ import FormMultiSelectHelper from "./FormMultiSelectHelper";
 import {generateInputAndHelperIds} from "../../utils/form";
 
 
-export default function FormMultiSelect({title, description, options, selected, setSelected, selectedRef}){
+export default function FormMultiSelect({title, description, options, selected, setSelected}){
 
     const [multiSelectId, helperId] = generateInputAndHelperIds('FormMultiSelect');
 
     console.log('render FormMultiSelect');
-    //console.log(selectedRef.current);
 
     const [showHelper, setShowHelper] = useState(false);
     const helperPositionYTypeClass = useRef('bottom');
 
+    const [localSelected, setLocalSelected] = useState([]);
+
+
     const removeFromSelected = (value) => {
-        setSelected(selected.filter(e => e.value !== value));
+        setLocalSelected(localSelected.filter(e => e.value !== value));
     };
 
     const addToSelected = (value, title) => {
-        setSelected(selected.concat([{value: value, title: title}]));
+        setLocalSelected(localSelected.concat([{value: value, title: title}]));
     };
 
-    const [testCat, setTestCat] = useState(selectedRef.current);
+    const save = () => {
+        setShowHelper(false);
+        setSelected(localSelected);
+    };
 
     useEffect(() => {
-        console.log('useEffect ');
-        setTestCat(selectedRef.current);
-    },[selectedRef.current]);
-    console.log('current cat FormMultiSelect = ' + JSON.stringify(selectedRef.current));
-    console.log('current cat testCat = ' + JSON.stringify(testCat));
+        setLocalSelected(selected);
+    }, [selected]);
+
+
 
     const getHelperPositionYType = () => {
         let element = document.getElementById(multiSelectId);
@@ -53,24 +57,24 @@ export default function FormMultiSelect({title, description, options, selected, 
     const handleShowAll = () => setShowHelper(!showHelper);
 
     return (
-        <div className="form-group">
+        <div className="form-group" key={selected}>
             <label htmlFor={multiSelectId}>{ title }</label>
 
             <div
                 className="multi-select"
                 id={multiSelectId}
                 onClick={handleShowAll}
-                onBlur={() => {setShowHelper(false);}}
+                onBlur={save}
                 tabIndex="0"
             >
 
-                {selected.map((o, i) => {
+                {localSelected.map((o, i) => {
                     return <FormMultiSelectOptionSelected key={i} title={o.title} value={o.value} remove={removeFromSelected}/>
                 })}
 
                 {showHelper && <FormMultiSelectHelper
                     options={options}
-                    selected={selected}
+                    selected={localSelected}
                     remove={removeFromSelected}
                     add={addToSelected}
                     positionYTypeClass={helperPositionYTypeClass}
