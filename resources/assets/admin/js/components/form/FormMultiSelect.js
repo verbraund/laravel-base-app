@@ -57,35 +57,37 @@ export default function FormMultiSelect({title, description, options, selected, 
     const handleShowAll = () => setShowHelper(!showHelper);
 
     return (
-        <div className="form-group" key={selected}>
-            <label htmlFor={multiSelectId}>{ title }</label>
+        <div className="form-row">
+            <div className="form-group col" key={selected}>
+                <label htmlFor={multiSelectId}>{ title }</label>
 
-            <div
-                className="multi-select"
-                id={multiSelectId}
-                onClick={handleShowAll}
-                onBlur={() => {setShowHelper(false);}}
-                tabIndex="0"
-            >
+                <div
+                    className="multi-select"
+                    id={multiSelectId}
+                    onClick={handleShowAll}
+                    onBlur={() => {setShowHelper(false);}}
+                    tabIndex="0"
+                >
 
-                {localSelected.map((o, i) => {
-                    return <FormMultiSelectOptionSelected key={i} title={o.title} value={o.value} remove={removeFromSelected}/>
-                })}
+                    {localSelected.map((o, i) => {
+                        return <FormMultiSelectOptionSelected key={i} title={o.title} value={o.value} remove={removeFromSelected}/>
+                    })}
 
-                {showHelper && <FormMultiSelectHelper
-                    options={localOptions}
-                    selected={localSelected}
-                    remove={removeFromSelected}
-                    add={addToSelected}
-                    positionYTypeClass={helperPositionYTypeClass}
-                />}
+                    {showHelper && <FormMultiSelectHelper
+                        options={localOptions}
+                        selected={localSelected}
+                        remove={removeFromSelected}
+                        add={addToSelected}
+                        positionYTypeClass={helperPositionYTypeClass}
+                    />}
 
-                <div className="choice">
-                    {showHelper ? <i className="fas fa-angle-up" /> : <i className="fas fa-angle-down" />}
+                    <div className="choice">
+                        {showHelper ? <i className="fas fa-angle-up" /> : <i className="fas fa-angle-down" />}
+                    </div>
                 </div>
-            </div>
 
-            {description && <small id={helperId} className="form-text text-muted">{description}</small>}
+                {description && <small id={helperId} className="form-text text-muted">{description}</small>}
+            </div>
         </div>
     );
 }

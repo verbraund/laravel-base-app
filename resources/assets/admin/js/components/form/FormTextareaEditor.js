@@ -45,18 +45,20 @@ export default function FormTextareaEditor({reference, title, description, rows}
     const [editorId] = generateInputAndHelperIds('FormTextarea');
 
     return (
-        <div className="form-group">
-            <label>{ title }</label>
+        <div className="form-row">
+            <div className="form-group col">
+                <label>{ title }</label>
 
-            <CKEditor
-                id={editorId}
-                editor={ Editor }
-                config={ editorConfiguration }
-                data={reference.current}
-                onReady={ editor => setCustomSettings(editor) }
-            />
+                <CKEditor
+                    id={editorId}
+                    editor={ Editor }
+                    config={ editorConfiguration }
+                    data={reference.current}
+                    onReady={ editor => setCustomSettings(editor) }
+                />
 
-            {description && <small className="form-text text-muted">{description}</small>}
+                {description && <small className="form-text text-muted">{description}</small>}
+            </div>
         </div>
     );
 }

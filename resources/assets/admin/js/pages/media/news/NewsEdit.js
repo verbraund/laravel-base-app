@@ -39,7 +39,8 @@ export default function NewsEdit(){
                     return {value: item.id, title: item.title};
                 });
 
-                //publishAt.current = Boolean(response.data.data.published_at);
+                published.current = Boolean(response.data.data.published);
+                publishAt.current = response.data.data.published_at;
 
                 forceUpdateCategories();
 
@@ -109,6 +110,9 @@ export default function NewsEdit(){
                         key={categoriesKey}
                     />
 
+                    <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} title={'Опубликовать'} />
+
+
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 
                     <FormInputText reference={slug} title={'ЧПУ (URI)'} description={'Заполниться автоматически'} />
@@ -116,8 +120,6 @@ export default function NewsEdit(){
                     <FormTextarea reference={description} title={'Краткое описание'} description={'meta:description'} />
 
                     <FormTextareaEditor reference={text} title={'Основной текст'} rows={10} />
-
-                    <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} title={'Опубликовать'} />
 
 
                 </div>
