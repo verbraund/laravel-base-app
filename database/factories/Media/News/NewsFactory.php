@@ -32,6 +32,7 @@ class NewsFactory extends Factory
             'slug' => Str::slug($title),
             'description' => $this->faker->text(200),
             'text' => $this->faker->text(1000),
+            'published' => $this->faker->boolean,
             'published_at' => $this->faker->dateTime
         ];
     }

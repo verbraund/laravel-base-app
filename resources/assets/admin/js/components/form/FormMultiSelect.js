@@ -8,8 +8,6 @@ export default function FormMultiSelect({title, description, options, selected, 
 
     const [multiSelectId, helperId] = generateInputAndHelperIds('FormMultiSelect');
 
-    console.log('render FormMultiSelect');
-
     const [showHelper, setShowHelper] = useState(false);
     const helperPositionYTypeClass = useRef('bottom');
 

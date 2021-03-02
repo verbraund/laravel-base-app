@@ -22,7 +22,9 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->string('description');
             $table->text('text');
+            $table->boolean('published')->default(false);
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('published_to')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

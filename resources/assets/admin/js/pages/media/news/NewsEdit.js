@@ -4,14 +4,13 @@ import axios from "axios";
 import FormInputText from "../../../components/form/FormInputText";
 import FormTextarea from "../../../components/form/FormTextarea";
 import FormCheckbox from "../../../components/form/FormCheckbox";
+import FormCheckboxDateFromTo from "../../../components/form/FormCheckboxDateFromTo";
 import FormSelect from "../../../components/form/FormSelect";
 import FormMultiSelect from "../../../components/form/FormMultiSelect";
 import FormTextareaEditor from "../../../components/form/FormTextareaEditor";
 import {useForceUpdate} from "../../../utils/other";
 
 export default function NewsEdit(){
-
-    console.log('render NewsEdit');
 
     let { id } = useParams();
     let history = useHistory();
@@ -25,7 +24,8 @@ export default function NewsEdit(){
     const currentCategories = useRef([]);
     const [forceUpdateCategories, categoriesKey] = useForceUpdate();
 
-    const publishAt = useRef(false);
+    const published = useRef(false);
+    const publishAt = useRef(null);
 
     useEffect(() => {
 
@@ -38,6 +38,8 @@ export default function NewsEdit(){
                 currentCategories.current = response.data.data.categories.map(item => {
                     return {value: item.id, title: item.title};
                 });
+
+                //publishAt.current = Boolean(response.data.data.published_at);
 
                 forceUpdateCategories();
 
@@ -65,6 +67,8 @@ export default function NewsEdit(){
 
 
     const save = () => {
+        console.log(published.current,publishAt.current);
+        return;
         axios.post(
             '/api/admin/news/' + id ,
             {
@@ -72,7 +76,9 @@ export default function NewsEdit(){
                 slug: slug.current.value,
                 description: description.current.value,
                 text: text.current,
-                categories: currentCategories.current.map(c => c.value)
+                categories: currentCategories.current.map(c => c.value),
+                //published_at: publishAt.current,
+
             }
         ).then(function (response) {
             if(typeof response.data.data === 'object' && response.data.data !== null){
@@ -111,7 +117,8 @@ export default function NewsEdit(){
 
                     <FormTextareaEditor reference={text} title={'Основной текст'} rows={10} />
 
-                    <FormCheckbox title={'Опубликовать'} />
+                    <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} title={'Опубликовать'} />
+
 
                 </div>
                 <div className="card-body">

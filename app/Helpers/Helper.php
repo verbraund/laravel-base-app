@@ -29,7 +29,7 @@ if (!function_exists('base64UrlDecode')) {
 if (!function_exists('date_custom_format')) {
     function date_custom_format($date)
     {
-        return Carbon\Carbon::parse($date)
+        return is_null($date) ? $date : Carbon\Carbon::parse($date)
             ->format('d.m.Y H:i:s');
     }
 }
