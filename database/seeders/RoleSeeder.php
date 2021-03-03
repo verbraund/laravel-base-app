@@ -15,7 +15,7 @@ class RoleSeeder extends Seeder
     {
 
         \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->count(1), 'users')
+            ->has(\App\Models\User::factory()->state(['login' => 'admin'])->count(1))
             ->create(['name' => \App\Models\Role::SUPER_ADMIN_NAME]);
 
         \App\Models\Role::factory()

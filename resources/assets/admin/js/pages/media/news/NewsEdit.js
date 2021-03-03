@@ -4,6 +4,7 @@ import axios from "axios";
 import FormInputText from "../../../components/form/FormInputText";
 import FormTextarea from "../../../components/form/FormTextarea";
 import FormCheckbox from "../../../components/form/FormCheckbox";
+import FormInputDateTime from "../../../components/form/FormInputDateTime";
 import FormCheckboxDateFromTo from "../../../components/form/FormCheckboxDateFromTo";
 import FormSelect from "../../../components/form/FormSelect";
 import FormMultiSelect from "../../../components/form/FormMultiSelect";
@@ -25,7 +26,8 @@ export default function NewsEdit(){
     const [forceUpdateCategories, categoriesKey] = useForceUpdate();
 
     const published = useRef(false);
-    const publishAt = useRef(null);
+    const publishAt = useRef('');
+    const publishTo = useRef('');
 
     useEffect(() => {
 
@@ -40,7 +42,8 @@ export default function NewsEdit(){
                 });
 
                 published.current = Boolean(response.data.data.published);
-                publishAt.current = response.data.data.published_at;
+                publishAt.current.value = response.data.data.published_at;
+                publishTo.current.value = response.data.data.published_to;
 
                 forceUpdateCategories();
 
@@ -68,8 +71,6 @@ export default function NewsEdit(){
 
 
     const save = () => {
-        console.log(published.current,publishAt.current);
-        return;
         axios.post(
             '/api/admin/news/' + id ,
             {
@@ -78,17 +79,19 @@ export default function NewsEdit(){
                 description: description.current.value,
                 text: text.current,
                 categories: currentCategories.current.map(c => c.value),
-                //published_at: publishAt.current,
+                published: published.current,
+                published_at: publishAt.current.value,
+                published_to: publishTo.current.value,
 
             }
         ).then(function (response) {
-            if(typeof response.data.data === 'object' && response.data.data !== null){
-                title.current.value = response.data.data.title;
-                slug.current.value = response.data.data.slug;
-                description.current.value = response.data.data.description;
-                text.current = response.data.data.text;
-
-            }
+            // if(typeof response.data.data === 'object' && response.data.data !== null){
+            //     title.current.value = response.data.data.title;
+            //     slug.current.value = response.data.data.slug;
+            //     description.current.value = response.data.data.description;
+            //     text.current = response.data.data.text;
+            //
+            // }
 
         }).catch(_ => {
             console.error('catch error');
@@ -110,8 +113,9 @@ export default function NewsEdit(){
                         key={categoriesKey}
                     />
 
-                    <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} title={'Опубликовать'} />
+                    <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} toRef={publishTo} title={'Опубликовать'} />
 
+                    <FormInputDateTime   title={'Date'} />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 

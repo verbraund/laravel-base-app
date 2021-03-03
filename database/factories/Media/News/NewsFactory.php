@@ -33,7 +33,8 @@ class NewsFactory extends Factory
             'description' => $this->faker->text(200),
             'text' => $this->faker->text(1000),
             'published' => $this->faker->boolean,
-            'published_at' => $this->faker->dateTime
+            'published_at' => $this->faker->randomElement([null, $this->faker->dateTime]),
+            'published_to' => $this->faker->randomElement([null, $this->faker->dateTime])
         ];
     }
 }

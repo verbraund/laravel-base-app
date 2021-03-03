@@ -22,7 +22,8 @@ class NewsResource extends BaseResource
             'text' => $this->text,
             'categories' => new NewsCategoryCollection($this->categories),
             'published' => $this->published,
-            'published_at' => date_custom_format($this->published_at),
+            'published_at' => ($this->published_at),
+            'published_to' => ($this->published_to),
             'created_at' => date_custom_format($this->created_at),
             'updated_at' => date_custom_format($this->updated_at),
         ]);

@@ -23,6 +23,9 @@ class NewsCreateRequest extends BaseRequest
             'text' => 'nullable',
             'categories' => 'required|array|min:1',
             'categories.*' => 'required|integer|distinct|min:0',
+            'published' => 'required|boolean',
+            'published_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'published_to' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
 

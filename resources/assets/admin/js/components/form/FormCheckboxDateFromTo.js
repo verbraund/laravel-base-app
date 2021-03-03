@@ -5,30 +5,23 @@ export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, tit
 
     const [checkboxId, helperId] = generateInputAndHelperIds('FormCheckboxDateFromTo');
 
-    //const checkbox = useRef({checked:checkboxRef.current});
-
-    //const from = useRef(fromRef.current);
-
-    // useEffect(() => {
-    //     checkbox.current.checked = checkboxRef.current;
-    //     //setChecked(checkboxRef.current);
-    // },[checkboxRef.current]);
-
-
-    // console.log('checkboxRef',checkboxRef.current);
-    // console.log('checkbox',checkbox.current.checked);
+    const [checked, setChecked] = useState(false);
 
     useEffect(() => {
-        setChecked(checkboxRef.current);
+        checkboxRef.current = checked;
+    },[checked]);
+
+    useEffect(() => {
+        if(checked !==  checkboxRef.current){
+            setChecked(checkboxRef.current);
+        }
     },[checkboxRef.current]);
 
 
-    const [checked, setChecked] = useState(false);
-
     return (
         <div className="form-row">
-            <div className="form-group col-md-2">
-                <div className="custom-control custom-switch mt-2">
+            <div className="form-group col-md-4">
+                <div className="custom-control custom-switch mt-2 mb-2">
                     <input
                         //ref={checkbox}
                         onChange={e => {
@@ -44,30 +37,26 @@ export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, tit
                     {description && <small id={helperId} className="form-text text-muted">{description}</small>}
                 </div>
                 </div>
-            {checked &&
-                <div className="form-group col-md-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-6 input-group">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">С</div>
-                            </div>
-                            <input ref={fromRef} type="text" className="form-control" />
+            <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
+                <div className="row justify-content-start">
+                    <div className="col-md-10 input-group">
+                        <div className="input-group-prepend">
+                            <div className="input-group-text">С</div>
                         </div>
+                        <input ref={fromRef} type="text" className="form-control" />
                     </div>
                 </div>
-            }
-            {checked &&
-                <div className="form-group col-md-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-6 input-group">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">По</div>
-                            </div>
-                            <input ref={toRef} type="text" className="form-control" />
+            </div>
+            <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
+                <div className="row justify-content-end">
+                    <div className="col-md-10 input-group">
+                        <div className="input-group-prepend">
+                            <div className="input-group-text">По</div>
                         </div>
+                        <input ref={toRef} type="text" className="form-control" />
                     </div>
                 </div>
-            }
+            </div>
         </div>
 
     );

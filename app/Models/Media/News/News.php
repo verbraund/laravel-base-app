@@ -22,6 +22,7 @@ class News extends Model
         'text',
         'published',
         'published_at',
+        'published_to',
     ];
 
     public $sortable = [
