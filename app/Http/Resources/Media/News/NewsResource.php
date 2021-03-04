@@ -24,8 +24,8 @@ class NewsResource extends BaseResource
             'published' => $this->published,
             'published_at' => ($this->published_at),
             'published_to' => ($this->published_to),
-            'created_at' => date_custom_format($this->created_at),
-            'updated_at' => date_custom_format($this->updated_at),
+            'created_at' => ($this->created_at),
+            'updated_at' => ($this->updated_at),
         ]);
     }
 }

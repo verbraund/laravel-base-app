@@ -5,3 +5,7 @@ export function useForceUpdate () {
     const update = () => setSate(Math.random());
     return [update, sate];
 }
+
+export function getISOFormat(date){
+    return date.toISOString()
+}

@@ -1,5 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {forwardRef, useEffect, useRef, useState} from 'react';
 import {generateInputAndHelperIds} from "../../utils/form";
+import DatePicker from "react-datepicker";
+import ru from 'date-fns/locale/ru';
+import FormDateTimePickerDefault from "./FormDateTimePickerDefault";
+import FormDateTimePickerWithLabel from "./FormDateTimePickerWithLabel";
 
 export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, title, description}){
 
@@ -17,6 +21,12 @@ export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, tit
         }
     },[checkboxRef.current]);
 
+
+
+
+    // return (
+    //     <FormDateTimePickerWithLabel reference={fromRef} label={'С'} />
+    // );
 
     return (
         <div className="form-row">
@@ -38,22 +48,16 @@ export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, tit
                 </div>
                 </div>
             <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
-                <div className="row justify-content-start">
-                    <div className="col-md-10 input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">С</div>
-                        </div>
-                        <input ref={fromRef} type="text" className="form-control" />
+                <div className="row ">
+                    <div className="w-75">
+                        <FormDateTimePickerWithLabel reference={fromRef} label={'С'} />
                     </div>
                 </div>
             </div>
             <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
-                <div className="row justify-content-end">
-                    <div className="col-md-10 input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">По</div>
-                        </div>
-                        <input ref={toRef} type="text" className="form-control" />
+                <div className="row ">
+                    <div className="w-75">
+                        <FormDateTimePickerWithLabel reference={toRef} label={'По'} />
                     </div>
                 </div>
             </div>

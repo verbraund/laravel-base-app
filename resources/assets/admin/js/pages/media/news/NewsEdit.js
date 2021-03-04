@@ -42,8 +42,8 @@ export default function NewsEdit(){
                 });
 
                 published.current = Boolean(response.data.data.published);
-                publishAt.current.value = response.data.data.published_at;
-                publishTo.current.value = response.data.data.published_to;
+                publishAt.current = response.data.data.published_at;
+                publishTo.current = response.data.data.published_to;
 
                 forceUpdateCategories();
 
@@ -71,6 +71,7 @@ export default function NewsEdit(){
 
 
     const save = () => {
+
         axios.post(
             '/api/admin/news/' + id ,
             {
@@ -80,8 +81,8 @@ export default function NewsEdit(){
                 text: text.current,
                 categories: currentCategories.current.map(c => c.value),
                 published: published.current,
-                published_at: publishAt.current.value,
-                published_to: publishTo.current.value,
+                published_at: publishAt.current,
+                published_to: publishTo.current,
 
             }
         ).then(function (response) {
@@ -115,7 +116,6 @@ export default function NewsEdit(){
 
                     <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} toRef={publishTo} title={'Опубликовать'} />
 
-                    <FormInputDateTime   title={'Date'} />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 
