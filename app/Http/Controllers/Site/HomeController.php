@@ -24,6 +24,8 @@ class HomeController extends Controller
         //dd(News::find(173)->user);
 
 
+        
+
         $user = User::find(1);
 
         $categoryOne = NewsCategory::find(1);

@@ -22,11 +22,15 @@ export default function LoginFormBase({setTfa}){
         }
     };
 
+    const pressHandled = (e) => {
+        if(e.key === 'Enter')submitHandler();
+    };
+
     return (
-        <div className="row">
-            <input type="text" ref={login} className="form-control mb-3" placeholder="Login" />
-            <input type="password" ref={pass} className="form-control mb-3" placeholder="Password" />
-            <button onClick={submitHandler} type="submit" className="btn btn-primary btn-block">Submit</button>
+        <div className="row" onKeyUp={pressHandled}>
+            <input type="text"  ref={login} className="form-control mb-3" placeholder="Login" />
+            <input type="password"  ref={pass} className="form-control mb-3" placeholder="Password" />
+            <button onClick={submitHandler}  type="submit" className="btn btn-primary btn-block">Submit</button>
         </div>
     );
 }

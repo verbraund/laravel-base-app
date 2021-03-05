@@ -16670,6 +16670,10 @@ body,
   padding: 0 10px 4px 0;
 }
 
+.react-datepicker-popper {
+  z-index: 5;
+}
+
 .grid tr .sortable {
   cursor: pointer;
 }

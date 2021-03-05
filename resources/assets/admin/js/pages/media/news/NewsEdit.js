@@ -9,6 +9,7 @@ import FormCheckboxDateFromTo from "../../../components/form/FormCheckboxDateFro
 import FormSelect from "../../../components/form/FormSelect";
 import FormMultiSelect from "../../../components/form/FormMultiSelect";
 import FormTextareaEditor from "../../../components/form/FormTextareaEditor";
+import FormInputFile from "../../../components/form/FormInputFile";
 import {useForceUpdate} from "../../../utils/other";
 
 export default function NewsEdit(){
@@ -116,6 +117,8 @@ export default function NewsEdit(){
 
                     <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} toRef={publishTo} title={'Опубликовать'} />
 
+
+                    <FormInputFile title={'Файл'} />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {generateInputAndHelperIds} from "../../utils/form";
-import FormDateTimePickerDefault from "./FormDateTimePickerDefault";
+import DateTimePickerDefault from "./DateTimePickerDefault";
 
 export default function FormInputDateTime({reference, title, description}){
 
@@ -14,7 +14,7 @@ export default function FormInputDateTime({reference, title, description}){
                 <label htmlFor={inputId}>{ title }</label>
 
                 <div>
-                    <FormDateTimePickerDefault reference={reference} />
+                    <DateTimePickerDefault reference={reference} />
                 </div>
                 {description && <small id={helperId} className="form-text text-muted">{description}</small>}
             </div>

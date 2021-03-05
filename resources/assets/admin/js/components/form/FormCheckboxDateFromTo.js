@@ -1,9 +1,6 @@
-import React, {forwardRef, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {generateInputAndHelperIds} from "../../utils/form";
-import DatePicker from "react-datepicker";
-import ru from 'date-fns/locale/ru';
-import FormDateTimePickerDefault from "./FormDateTimePickerDefault";
-import FormDateTimePickerWithLabel from "./FormDateTimePickerWithLabel";
+import DateTimePickerWithLabel from "./DateTimePickerWithLabel";
 
 export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, title, description}){
 
@@ -50,14 +47,14 @@ export default function FormCheckboxDateFromTo({checkboxRef, fromRef, toRef, tit
             <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
                 <div className="row ">
                     <div className="w-75">
-                        <FormDateTimePickerWithLabel reference={fromRef} label={'С'} />
+                        <DateTimePickerWithLabel reference={fromRef} label={'С'} />
                     </div>
                 </div>
             </div>
             <div className={"form-group col-md-4 " + (checked ? '' : 'd-none')}>
                 <div className="row ">
                     <div className="w-75">
-                        <FormDateTimePickerWithLabel reference={toRef} label={'По'} />
+                        <DateTimePickerWithLabel reference={toRef} label={'По'} />
                     </div>
                 </div>
             </div>

@@ -44,6 +44,9 @@ Route::middleware(['auth.ips'])->group(function(){
             //NewsCategory
             Route::get('news/categories',[App\Http\Controllers\Admin\Api\V1\Media\NewsCategoryController::class, 'index']);
 
+            //Support service
+            Route::post('files',[App\Http\Controllers\Admin\Api\V1\Media\FileController::class, 'store']);
+
 
         });
     });

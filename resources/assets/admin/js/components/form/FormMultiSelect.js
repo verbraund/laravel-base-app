@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
-import FormMultiSelectOptionSelected from "./FormMultiSelectOptionSelected";
-import FormMultiSelectHelper from "./FormMultiSelectHelper";
+import MultiSelectOptionSelected from "./MultiSelectOptionSelected";
+import MultiSelectHelper from "./MultiSelectHelper";
 import {generateInputAndHelperIds} from "../../utils/form";
 
 
@@ -70,10 +70,10 @@ export default function FormMultiSelect({title, description, options, selected, 
                 >
 
                     {localSelected.map((o, i) => {
-                        return <FormMultiSelectOptionSelected key={i} title={o.title} value={o.value} remove={removeFromSelected}/>
+                        return <MultiSelectOptionSelected key={i} title={o.title} value={o.value} remove={removeFromSelected}/>
                     })}
 
-                    {showHelper && <FormMultiSelectHelper
+                    {showHelper && <MultiSelectHelper
                         options={localOptions}
                         selected={localSelected}
                         remove={removeFromSelected}
