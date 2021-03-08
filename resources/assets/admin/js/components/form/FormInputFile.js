@@ -5,16 +5,16 @@ import axios from "axios";
 export default function FormInputFile({reference, title, description}) {
 
     const [inputId, helperId] = generateInputAndHelperIds('FormInputFile');
-
-    const [selectedFile, setSelectedFiles] = useState(false);
-
     const [file, setFile] = useState(null);
 
     const changeHandler = (e) => {
-        let fileObject = e.target.files[0];
+        if(e.target.files.length > 0){
+            setFile(e.target.files[0]);
+        }
+    };
 
-
-        setFile(fileObject);
+    const closeHandler = (e) => {
+        //TODO close
     };
 
     useEffect(() => {
@@ -53,25 +53,18 @@ export default function FormInputFile({reference, title, description}) {
                         <label htmlFor={inputId} className="btn btn-primary custom-file-input-label">
                             <i className="fas fa-upload" /> Прикрепить файл
                         </label>
-                        <input id={inputId} className="custom-file-input" type="file"/>
+                        <input id={inputId} onChange={changeHandler} className="custom-file-input" type="file"/>
                     </div>
-                    <div className="form-group">
-                        <div className="custom-file-input-info">
-                            <i className="fas fa-external-link-alt" />
-                            test_7989.doc
-                        </div>
-                    </div>
+                    {file && <div className="form-group">
+                            <div className="custom-file-input-info">
+                                <a target="_blank" href="" className="reference">
+                                    <i className="fas fa-external-link-alt" />
+                                </a>
+                                {file.name}
+                                <i className="fas fa-times close" onClick={closeHandler} />
+                            </div>
+                    </div>}
                 </div>
-
-
-                {/*<label htmlFor={inputId}>{ title }</label>*/}
-                {/*<div className="custom-file">*/}
-                {/*    <input onChange={changeHandler} type="file" className="custom-file-input" id={inputId} />*/}
-                {/*    <label className="custom-file-label" htmlFor={inputId}>*/}
-                {/*        {file ? file.name : 'Выберите файл'}*/}
-                {/*    </label>*/}
-                {/*</div>*/}
-
                 {description && <small id={helperId} className="form-text text-muted">{description}</small>}
             </div>
         </div>

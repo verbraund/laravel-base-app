@@ -16678,13 +16678,44 @@ body,
   border-radius: 0.25rem;
   background-color: #e9ecef;
   display: block;
-  width: 200px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
-  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   color: #656363;
+  padding: 0.375rem 2.5rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 600px;
+}
+
+.custom-file-input-info a.reference {
+  position: absolute;
+  left: 14px;
+  cursor: pointer;
+}
+
+.custom-file-input-info a.reference i {
+  font-size: 14px;
+}
+
+.custom-file-input-info a.reference i:hover {
+  color: #037bfe;
+}
+
+.custom-file-input-info i.close {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.custom-file-input-info i.close:hover {
+  color: #aa0404;
+  opacity: 1;
 }
 
 input.custom-file-input {
