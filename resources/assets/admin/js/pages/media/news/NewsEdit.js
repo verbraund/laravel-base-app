@@ -118,7 +118,7 @@ export default function NewsEdit(){
                     <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} toRef={publishTo} title={'Опубликовать'} />
 
 
-                    <FormInputFile title={'Файл'} />
+                    <FormInputFile title={'Прикрепляемый файл'} />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 

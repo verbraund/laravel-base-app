@@ -14,6 +14,7 @@ class File extends Model
     protected $fillable = [
         'name',
         'origin',
+        'path',
         'size',
         'type'
     ];
@@ -23,4 +24,8 @@ class File extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function getPathAndName()
+    {
+        return $this->path . '/' . $this->name;
+    }
 }

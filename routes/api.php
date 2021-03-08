@@ -46,6 +46,9 @@ Route::middleware(['auth.ips'])->group(function(){
 
             //Support service
             Route::post('files',[App\Http\Controllers\Admin\Api\V1\Media\FileController::class, 'store']);
+            Route::get('files/{id}',[App\Http\Controllers\Admin\Api\V1\Media\FileController::class, 'show']);
+            Route::post('images',[App\Http\Controllers\Admin\Api\V1\Media\ImageController::class, 'store']);
+            Route::get('images/{id}',[App\Http\Controllers\Admin\Api\V1\Media\ImageController::class, 'show']);
 
 
         });

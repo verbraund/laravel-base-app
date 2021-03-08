@@ -21,6 +21,7 @@ class ApiServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\Api\Media\NewsCategory::class, \App\Services\Api\Media\NewsCategoryService::class);
 
         $this->app->bind(\App\Contracts\Api\Media\File::class, \App\Services\Api\Media\FileService::class);
+        $this->app->bind(\App\Contracts\Api\Media\Image::class, \App\Services\Api\Media\ImageService::class);
 
         $this->app->bind(\App\Contracts\Api\Media\QueryFilters::class, \App\Services\Api\Media\QueryFiltersService::class);
 //        $this->app->bind(\App\Contracts\Api\Media\QueryFilters::class, function(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Contracts\Api\Auth\TFA;
 use App\Http\Controllers\Controller;
+use App\Models\Media\File;
 use App\Models\Media\News\News;
 use App\Models\Media\News\NewsCategory;
 use App\Services\Api\Auth\JOSE\JWTParser;
@@ -14,6 +15,7 @@ use App\Services\Api\Auth\JWTService;
 use App\Models\User;
 use App\Models\Resource;
 use Illuminate\Support\Str;
+use Illuminate\Routing\UrlGenerator;
 
 class HomeController extends Controller
 {
@@ -22,9 +24,16 @@ class HomeController extends Controller
     {
 
         //dd(News::find(173)->user);
+        $file = File::find(2);
+        //(new UrlGenerator())->
+        //dd($file);
+        dd(asset($file->getPathAndName()));
 
 
-        
+       echo "<img src='".asset('storage/1.png')."'>";
+
+       exit;
+
 
         $user = User::find(1);
 

@@ -17,7 +17,7 @@ class FileRequest extends BaseRequest
     public function rules()
     {
         return [
-            'data' => 'required|file',
+            'data' => 'required|file|mimes:csv,txt,xlx,xls,pdf,doc,docx,rtf',
         ];
     }
 

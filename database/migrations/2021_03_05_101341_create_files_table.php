@@ -17,9 +17,10 @@ class CreateFilesTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->string('origin');
-            $table->string('type');
-            $table->unsignedInteger('size',400);
+            $table->string('origin',400);
+            $table->string('path');
+            $table->string('type', 100);
+            $table->unsignedInteger('size');
             $table->softDeletes();
             $table->timestamps();
 
