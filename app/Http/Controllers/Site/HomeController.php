@@ -23,6 +23,7 @@ class HomeController extends Controller
     public function index(Request $request, JWTService $JWTService, TFA $TFAService)
     {
 
+
         //dd(News::find(173)->user);
         $file = File::find(2);
         //(new UrlGenerator())->

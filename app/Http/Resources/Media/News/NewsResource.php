@@ -3,6 +3,9 @@
 namespace App\Http\Resources\Media\News;
 
 use App\Http\Resources\BaseResource;
+use App\Http\Resources\Media\FileResource;
+use App\Http\Resources\Media\ImageResource;
+use App\Http\Resources\UserResource;
 
 class NewsResource extends BaseResource
 {
@@ -21,6 +24,9 @@ class NewsResource extends BaseResource
             'description' => $this->description,
             'text' => $this->text,
             'categories' => new NewsCategoryCollection($this->categories),
+            'user' => new UserResource($this->user),
+            'image' => new ImageResource($this->image),
+            'attachment' => new FileResource($this->attachment),
             'published' => $this->published,
             'published_at' => ($this->published_at),
             'published_to' => ($this->published_to),

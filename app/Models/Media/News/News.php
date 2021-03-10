@@ -3,6 +3,8 @@
 namespace App\Models\Media\News;
 
 use App\Extensions\Searchable;
+use App\Models\Media\File;
+use App\Models\Media\Image;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +37,16 @@ class News extends Model
         'description',
         'text',
     ];
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class,'preview_id');
+    }
+
+    public function attachment()
+    {
+        return $this->belongsTo(File::class,'attachment_id');
+    }
 
     public function categories()
     {

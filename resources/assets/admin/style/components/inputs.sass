@@ -122,7 +122,8 @@
 .react-datepicker-popper
     z-index: 5
 
-.custom-file-input-info
+.custom-file-input-info,
+.custom-file-input-image
     border-radius: 0.25rem
     background-color: #e9ecef
     display: block
@@ -170,4 +171,47 @@ label.custom-file-input-label
     i
         margin-right: 8px
 
+
+.custom-file-input-image
+    padding: 1rem 1.3rem 0   1.3rem
+    border: 1px solid #90b3d8
+
+    a.reference
+        position: relative
+        left: 0
+        padding: 1px 8px 5px
+        background: #007bff
+        border-radius: 0.2rem
+        top: 1px
+        color: #fff
+        &:hover
+            background: #026ee0
+        i
+            &:hover
+                color: #ffffff
+
+    .preview
+        max-width: 220px
+        max-height: 220px
+        //border: 3px solid #919194
+
+
+    .remove
+        display: inline-block
+        font-weight: 400
+        text-align: center
+        vertical-align: middle
+        background-color: #dc3545
+        border: none
+        color: #ffffff
+        padding: 3px 12px
+        font-size: 0.875rem
+        line-height: 1.5
+        border-radius: 0.2rem
+        user-select: none
+        cursor: pointer
+
+
+        &:hover
+            background-color: #b51625
 

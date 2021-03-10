@@ -10,6 +10,7 @@ import FormSelect from "../../../components/form/FormSelect";
 import FormMultiSelect from "../../../components/form/FormMultiSelect";
 import FormTextareaEditor from "../../../components/form/FormTextareaEditor";
 import FormInputFile from "../../../components/form/FormInputFile";
+import FormInputImage from "../../../components/form/FormInputImage";
 import {useForceUpdate} from "../../../utils/other";
 
 export default function NewsEdit(){
@@ -30,6 +31,10 @@ export default function NewsEdit(){
     const publishAt = useRef('');
     const publishTo = useRef('');
 
+    const user = useRef(null);
+    const attachment = useRef(null);
+    const image = useRef(null);
+
     useEffect(() => {
 
         axios.get('/api/admin/news/' + id + '/edit').then(function (response) {
@@ -45,6 +50,10 @@ export default function NewsEdit(){
                 published.current = Boolean(response.data.data.published);
                 publishAt.current = response.data.data.published_at;
                 publishTo.current = response.data.data.published_to;
+
+                user.current = response.data.data.user;
+                attachment.current = response.data.data.attachment;
+                image.current = response.data.data.image;
 
                 forceUpdateCategories();
 
@@ -75,7 +84,7 @@ export default function NewsEdit(){
 
         axios.post(
             '/api/admin/news/' + id ,
-            {
+        {
                 title: title.current.value,
                 slug: slug.current.value,
                 description: description.current.value,
@@ -84,7 +93,8 @@ export default function NewsEdit(){
                 published: published.current,
                 published_at: publishAt.current,
                 published_to: publishTo.current,
-
+                image: image.current ? image.current.id : image.current,
+                attachment: attachment.current ? attachment.current.id : attachment.current,
             }
         ).then(function (response) {
             // if(typeof response.data.data === 'object' && response.data.data !== null){
@@ -104,7 +114,14 @@ export default function NewsEdit(){
     return (
         <div>
             <div className="card">
-                <h5 className="card-header">Редактирование Новости</h5>
+                <div className="card-header">
+                    <div className="row">
+                        <h5 className="col mb-0">Редактирование Новости</h5>
+                        {user.current && <div className="col text-right text-black-50">
+                            последний редактор: <span className="badge badge-success">{user.current.login}</span>
+                        </div>}
+                    </div>
+                </div>
                 <div className="card-body">
 
                     <FormMultiSelect
@@ -118,7 +135,9 @@ export default function NewsEdit(){
                     <FormCheckboxDateFromTo checkboxRef={published} fromRef={publishAt} toRef={publishTo} title={'Опубликовать'} />
 
 
-                    <FormInputFile title={'Прикрепляемый файл'} />
+                    <FormInputFile reference={attachment} title={'Прикрепляемый файл'} />
+
+                    <FormInputImage reference={image} title={'Превью новости'} />
 
                     <FormInputText reference={title} title={'Наименование'} description={'meta:title'} />
 

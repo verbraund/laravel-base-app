@@ -16674,7 +16674,8 @@ body,
   z-index: 5;
 }
 
-.custom-file-input-info {
+.custom-file-input-info,
+.custom-file-input-image {
   border-radius: 0.25rem;
   background-color: #e9ecef;
   display: block;
@@ -16691,21 +16692,25 @@ body,
   max-width: 600px;
 }
 
-.custom-file-input-info a.reference {
+.custom-file-input-info a.reference,
+.custom-file-input-image a.reference {
   position: absolute;
   left: 14px;
   cursor: pointer;
 }
 
-.custom-file-input-info a.reference i {
+.custom-file-input-info a.reference i,
+.custom-file-input-image a.reference i {
   font-size: 14px;
 }
 
-.custom-file-input-info a.reference i:hover {
+.custom-file-input-info a.reference i:hover,
+.custom-file-input-image a.reference i:hover {
   color: #037bfe;
 }
 
-.custom-file-input-info i.close {
+.custom-file-input-info i.close,
+.custom-file-input-image i.close {
   position: absolute;
   right: 10px;
   font-size: 18px;
@@ -16713,7 +16718,8 @@ body,
   cursor: pointer;
 }
 
-.custom-file-input-info i.close:hover {
+.custom-file-input-info i.close:hover,
+.custom-file-input-image i.close:hover {
   color: #aa0404;
   opacity: 1;
 }
@@ -16730,6 +16736,57 @@ label.custom-file-input-label {
 
 label.custom-file-input-label i {
   margin-right: 8px;
+}
+
+.custom-file-input-image {
+  padding: 1rem 1.3rem 0 1.3rem;
+  border: 1px solid #90b3d8;
+}
+
+.custom-file-input-image a.reference {
+  position: relative;
+  left: 0;
+  padding: 1px 8px 5px;
+  background: #007bff;
+  border-radius: 0.2rem;
+  top: 1px;
+  color: #fff;
+}
+
+.custom-file-input-image a.reference:hover {
+  background: #026ee0;
+}
+
+.custom-file-input-image a.reference i:hover {
+  color: #ffffff;
+}
+
+.custom-file-input-image .preview {
+  max-width: 220px;
+  max-height: 220px;
+}
+
+.custom-file-input-image .remove {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #dc3545;
+  border: none;
+  color: #ffffff;
+  padding: 3px 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.custom-file-input-image .remove:hover {
+  background-color: #b51625;
 }
 
 .grid tr .sortable {

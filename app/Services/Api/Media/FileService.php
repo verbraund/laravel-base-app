@@ -34,7 +34,7 @@ class FileService extends MediaService implements FileContract
             $this->storage->disk($this->disc)->putFileAs($this->getPathInStore(), $uploadFile, $name);
 
 
-        return $this->create([
+        $model = $this->create([
             'name' => basename($name),
             'origin' => $uploadFile->getClientOriginalName(),
             'type' => $uploadFile->getClientMimeType(),
@@ -42,22 +42,22 @@ class FileService extends MediaService implements FileContract
             'size' => $uploadFile->getSize()
         ]);
 
+        $model->user()->associate(auth()->user());
+        $model->save();
+
+        return $model;
+
     }
 
     public function download($id)
     {
-        $this->storage->disk($this->disc)
+        return $this->storage->disk($this->disc)
             ->download($this->getById($id)->getPathAndName());
-    }
-
-    public function saveMany($files, $names = [])
-    {
-
     }
 
     protected function getPathInStore()
     {
-        return  $this->path . '/' . date('m');
+        return  $this->path . '/' . date('Y') . '/' . date('m');
     }
 
 }
