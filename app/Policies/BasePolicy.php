@@ -73,12 +73,12 @@ abstract class BasePolicy
 
     protected function isAdmin($user)
     {
-        return $user->role->name == Role::ADMIN_NAME;
+        return $user->role->isAdmin();
     }
 
     protected function isSuperAdmin($user)
     {
-        return $user->role->name == Role::SUPER_ADMIN_NAME;
+        return $user->role->isSuperAdmin();
     }
 
 

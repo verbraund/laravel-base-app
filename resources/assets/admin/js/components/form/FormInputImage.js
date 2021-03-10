@@ -36,15 +36,16 @@ export default function FormInputImage({reference, title, description}){
         setImage(null);
     };
 
+
+    useEffect(() => {
+        reference.current = image;
+    }, [image]);
+
     useEffect(() => {
         if(reference.current && image === null){
             setImage(reference.current);
         }
     }, [reference.current]);
-
-    useEffect(() => {
-        reference.current = image;
-    }, [image]);
 
     return (
         <div className="form-row">

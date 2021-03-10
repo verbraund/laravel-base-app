@@ -25,15 +25,15 @@ class HomeController extends Controller
 
 
         //dd(News::find(173)->user);
-        $file = File::find(2);
+        //$file = File::findOrFail(2);
         //(new UrlGenerator())->
         //dd($file);
-        dd(asset($file->getPathAndName()));
+        //dd(asset($file->getPathAndName()));
 
 
-       echo "<img src='".asset('storage/1.png')."'>";
-
-       exit;
+//       echo "<img src='".asset('storage/1.png')."'>";
+//
+//       exit;
 
 
         $user = User::find(1);

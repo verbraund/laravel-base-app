@@ -35,15 +35,16 @@ export default function FormInputFile({reference, title, description}) {
         setFile(null);
     };
 
+
+    useEffect(() => {
+        reference.current = file;
+    }, [file]);
+
     useEffect(() => {
         if(reference.current && file === null){
             setFile(reference.current);
         }
     }, [reference.current]);
-
-    useEffect(() => {
-        reference.current = file;
-    }, [file]);
 
     return (
         <div className="form-row">

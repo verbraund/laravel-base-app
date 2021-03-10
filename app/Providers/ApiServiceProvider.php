@@ -17,6 +17,9 @@ class ApiServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\Api\Auth\Token\Refresh::class, \App\Services\Api\Auth\SimpleToken::class);
         $this->app->bind(\App\Contracts\Api\Auth\TFA::class, \App\Services\Api\Auth\GoogleAuthQrCode::class);
 
+        $this->app->bind(\App\Contracts\Api\Admin\Menu::class, \App\Services\Api\Admin\MenuService::class);
+        $this->app->bind(\App\Contracts\Api\Media\User::class, \App\Services\Api\Media\UserService::class);
+
         $this->app->bind(\App\Contracts\Api\Media\News::class, \App\Services\Api\Media\NewsService::class);
         $this->app->bind(\App\Contracts\Api\Media\NewsCategory::class, \App\Services\Api\Media\NewsCategoryService::class);
 

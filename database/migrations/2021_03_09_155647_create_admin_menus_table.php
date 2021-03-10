@@ -20,7 +20,7 @@ class CreateAdminMenusTable extends Migration
             $table->unsignedBigInteger('resource_id')->nullable();
             $table->unsignedBigInteger('permission_id')->nullable();
             $table->string('name');
-            $table->string('urn');
+            $table->string('urn')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

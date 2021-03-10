@@ -5,8 +5,8 @@ import HeaderUserInfo from "../components/layout/HeaderUserInfo";
 export default function Header() {
 
     let menu = [
-        {name: 'Главная', to:'/admin'},
-        {name: 'новости', to:'/admin/news'}
+        {name: 'На сайт', to:'/', reference: true},
+        {name: 'Настройки', to:'/admin/settings'}
     ];
 
     const style = {

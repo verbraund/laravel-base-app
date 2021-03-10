@@ -40,4 +40,14 @@ class Role extends Model
         return $this->belongsToMany(Resource::class, 'permission_role');
     }
 
+    public function isSuperAdmin()
+    {
+        return $this->name == self::SUPER_ADMIN_NAME;
+    }
+
+    public function isAdmin()
+    {
+        return $this->name == self::ADMIN_NAME;
+    }
+
 }

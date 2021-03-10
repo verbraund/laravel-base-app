@@ -50,6 +50,9 @@ Route::middleware(['auth.ips'])->group(function(){
             Route::post('images',[App\Http\Controllers\Admin\Api\V1\Media\ImageController::class, 'store']);
             Route::get('images/{id}',[App\Http\Controllers\Admin\Api\V1\Media\ImageController::class, 'show']);
 
+            Route::get('account/menus',[App\Http\Controllers\Admin\Api\V1\AdminMenuController::class, 'index']);
+            //Route::get('account',[App\Http\Controllers\Admin\Api\V1\AdminAccountController::class, 'index']);
+
 
         });
     });
