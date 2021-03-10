@@ -1,9 +1,11 @@
 import React, {useContext, useRef} from 'react';
 import {AuthContext} from "../../contexts/AuthContext";
+import {AlertContext} from "../../contexts/AlertContext";
 
 export default function LoginFormBase({setTfa}){
 
     const {auth} = useContext(AuthContext);
+    const {error} = useContext(AlertContext);
 
     const login = useRef('');
     const pass = useRef('');
@@ -18,6 +20,7 @@ export default function LoginFormBase({setTfa}){
             }).catch(_ => {
                 login.current.value = '';
                 pass.current.value = '';
+                error('Ошибка','Логин или пароль введен неверно');
             });
         }
     };

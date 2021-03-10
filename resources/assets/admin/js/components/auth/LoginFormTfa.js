@@ -1,9 +1,11 @@
 import React, {useContext, useRef} from 'react';
 import {AuthContext} from "../../contexts/AuthContext";
+import {AlertContext} from "../../contexts/AlertContext";
 
 export default function LoginFormTfa({setTfa}){
 
     const {auth} = useContext(AuthContext);
+    const {error} = useContext(AlertContext);
 
     const code = useRef('');
     const qr = auth.getTfaQrCode();
@@ -16,6 +18,7 @@ export default function LoginFormTfa({setTfa}){
                 }
             }).catch(_ => {
                 code.current.value = '';
+                error('Ошибка!','Некорректный код');
             });
         }
     };

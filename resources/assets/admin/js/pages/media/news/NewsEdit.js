@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import axios from "axios";
 import FormInputText from "../../../components/form/FormInputText";
@@ -13,10 +13,13 @@ import FormInputFile from "../../../components/form/FormInputFile";
 import FormInputImage from "../../../components/form/FormInputImage";
 import {useForceUpdate} from "../../../utils/other";
 
+import {AlertContext} from "../../../contexts/AlertContext";
+
 export default function NewsEdit(){
 
     let { id } = useParams();
     let history = useHistory();
+    const {error, success} = useContext(AlertContext);
 
     const title = useRef('');
     const slug = useRef('');
@@ -97,6 +100,7 @@ export default function NewsEdit(){
                 attachment: attachment.current ? attachment.current.id : attachment.current,
             }
         ).then(function (response) {
+            success('Сохранено','Запись была успешно сохранена');
             // if(typeof response.data.data === 'object' && response.data.data !== null){
             //     title.current.value = response.data.data.title;
             //     slug.current.value = response.data.data.slug;
