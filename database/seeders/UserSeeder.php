@@ -13,6 +13,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->create();
+        \App\Models\User::factory()->create(['login' => 'admin']);
     }
 }

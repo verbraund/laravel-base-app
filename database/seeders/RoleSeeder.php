@@ -14,20 +14,10 @@ class RoleSeeder extends Seeder
     public function run()
     {
 
-        \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->state(['login' => 'admin'])->count(1))
-            ->create(['name' => \App\Models\Role::SUPER_ADMIN_NAME]);
+        \App\Models\Role::factory()->create(['name' => \App\Models\Role::SUPER_ADMIN_NAME]);
+        \App\Models\Role::factory()->create(['name' => \App\Models\Role::ADMIN_NAME]);
+        \App\Models\Role::factory()->create(['name' => 'Manager']);
+        \App\Models\Role::factory()->create(['name' => 'User']);
 
-        \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->count(2), 'users')
-            ->create(['name' => \App\Models\Role::ADMIN_NAME]);
-
-        \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->count(3), 'users')
-            ->create(['name' => 'Manager']);
-
-        \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->count(6),'users')
-            ->create(['name' => 'User']);
     }
 }

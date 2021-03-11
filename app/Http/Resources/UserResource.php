@@ -17,6 +17,7 @@ class UserResource extends BaseResource
         return $this->filtrateFields([
             'id' => $this->id,
             'login' => $this->login,
+            'email' => $this->email,
             'tfa' => $this->tfa
         ]);
     }

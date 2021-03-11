@@ -15,6 +15,7 @@ export default function AuthProvider({children}){
     auth.setRefreshUrl('/api/auth/refresh-tokens');
     auth.setLogoutUrl('/api/auth/logout');
     auth.setTfaUrl('/api/auth/tfa');
+    auth.setTfaForgotUrl('/api/auth/tfa/forgot');
 
     auth.setLoginHandle(isAuthenticated => {
         if(isAuthenticated) setAuthenticated(true);

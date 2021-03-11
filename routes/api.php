@@ -21,7 +21,8 @@ Route::middleware(['auth.ips'])->group(function(){
         Route::post('login',[App\Http\Controllers\Admin\Api\V1\Auth\LoginController::class, 'login']);
 
         Route::middleware(['auth:jwt/login'])->group(function(){
-            Route::post('tfa',[App\Http\Controllers\Admin\Api\V1\Auth\LoginController::class, 'twoFactorAuth'])->name('api.admin.auth.tfa');
+            Route::post('tfa',[App\Http\Controllers\Admin\Api\V1\Auth\TFAController::class, 'check'])->name('api.admin.auth.tfa');
+            Route::get('tfa/forgot',[App\Http\Controllers\Admin\Api\V1\Auth\TFAController::class, 'forgot']);
         });
 
         Route::middleware(['auth:jwt/base'])->group(function(){

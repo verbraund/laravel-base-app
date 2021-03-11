@@ -23,6 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'login' => 'user_' . $this->faker->unique()->word(),
+            'email' => 'verbraund@gmail.com',
             'password' => '$2y$10$jBndEfRKb/NvVhecsHlHsOuGy/FR9bDRJASRvkGHMWgbKmfKzN.Vy', // 123
             'tfa' => 0,
             'tfa_code' => null,

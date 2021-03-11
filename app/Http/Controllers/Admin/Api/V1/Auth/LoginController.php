@@ -20,9 +20,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    private $refreshTokenService;
-    private $accessTokenService;
-    private $TFAService;
+    protected $refreshTokenService;
+    protected $accessTokenService;
+    protected $TFAService;
 
     public $maxAttempts = 6;
     public $decayMinutes = 10;
@@ -99,22 +99,6 @@ class LoginController extends Controller
                 ),
                 $this->refreshTokenService->getExpirationTime()
             );
-    }
-
-    public function twoFactorAuth(LoginTfaRequest $request)
-    {
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->sendLockoutResponse($request);
-        }
-
-        if($this->TFAService->isValidCode($this->getCurrentUser(), $request->code)){
-            $this->clearLoginAttempts($request);
-            return $this->sendSuccessResponse();
-        }
-
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
     }
 
     public function logout()

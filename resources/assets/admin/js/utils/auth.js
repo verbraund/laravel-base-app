@@ -52,6 +52,7 @@ const utils = () => {
         refresh : {url: null, handle: _ => _},
         login : {url: null, handle: _ => _},
         tfa : {url: null, handle: _ => _, qr: null, enabled: false},
+        tfaForgot : {url: null, handle: _ => _},
         logout : {url: null, handle: _ => _},
     };
 
@@ -66,10 +67,12 @@ const utils = () => {
         setLoginUrl: u => config.login.url = u,
         setTfaUrl: u => config.tfa.url = u,
         setLogoutUrl: u => config.logout.url = u,
+        setTfaForgotUrl: u => config.tfaForgot.url = u,
         setRefreshHandle: h => config.refresh.handle = h,
         setLoginHandle: h => config.login.handle = h,
         setLogoutHandle: h => config.logout.handle = h,
         setTfaHandle: h => config.tfa.handle = h,
+        setTfaForgotHandle: h => config.tfaForgot.handle = h,
 
         addTokenRefreshSubscriber: s => tokenRefreshSubscribers.push(s),
         onTokenRefreshed: t => tokenRefreshSubscribers = tokenRefreshSubscribers.filter(c => c(t)),
@@ -116,6 +119,13 @@ const utils = () => {
                     }
                     return false;
             }).then(config.tfa.handle);
+        },
+        tfaForgot: _ => {
+            if(!config.tfaForgot.url) return Promise.reject(new Error("tfa forgot url address is not defined"));
+            return axios.get(
+                config.tfaForgot.url,
+                {withCredentials: true}
+            ).then(config.tfaForgot.handle);
         },
         logout: () => {
             if(!config.logout.url) return Promise.reject(new Error("logout url address is not defined"));

@@ -11,5 +11,5 @@
 
 
 @section('container')
-    <div id="app">app</div>
+    <div id="app"></div>
 @endsection

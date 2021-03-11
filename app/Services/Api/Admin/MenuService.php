@@ -22,15 +22,15 @@ class MenuService implements MenuContract
         $user = $this->userService->getCurrentAuthenticated();
 
         if($user->role->isSuperAdmin()){
-            return Menu::with('childes')->parents()->get();
+            return Menu::with('childes')->main()->get();
         }
 
         $resources = $user->role->resources->pluck('id')->unique();
         $response = collect();
 
         $menus = Menu::with(['resource', 'childes' => function($query) use($resources){
-            $query->whereResources($resources);
-        }])->parents()->get();
+            $query->whereResourcesOrNull($resources);
+        }])->main()->get();
 
         foreach ($menus as $k => $menu){
             if(
