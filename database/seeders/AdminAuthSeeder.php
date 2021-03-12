@@ -13,24 +13,31 @@ class AdminAuthSeeder extends Seeder
      */
     public function run()
     {
-        $newsResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\News::class]);
-        $newsCategoriesResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\NewsCategory::class]);
-        $userResource = \App\Models\Resource::factory()->create(['name' => \App\Models\User::class]);
-        $roleResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Role::class]);
+
+        ///// RESOURCES
+        $newsResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\News::class, 'label' => 'Новости']);
+        $newsCategoriesResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\NewsCategory::class, 'label' => 'Категории новостей']);
+        $userResource = \App\Models\Resource::factory()->create(['name' => \App\Models\User::class, 'label' => 'Пользователи']);
+        $roleResource = \App\Models\Resource::factory()->create(['name' => \App\Models\Role::class, 'label' => 'Роли пользователей']);
 
 
-        $viewPermission = \App\Models\Permission::factory()->create(['name' => 'view']);
-        $createPermission = \App\Models\Permission::factory()->create(['name' => 'create']);
-        $updatePermission = \App\Models\Permission::factory()->create(['name' => 'update']);
-        $deletePermission = \App\Models\Permission::factory()->create(['name' => 'delete']);
+        ///// PERMISSIONS
+        $viewPermission = \App\Models\Permission::factory()->create(['name' => 'view', 'label' => 'Просмотр']);
+        $createPermission = \App\Models\Permission::factory()->create(['name' => 'create', 'label' => 'Создение']);
+        $updatePermission = \App\Models\Permission::factory()->create(['name' => 'update', 'label' => 'Изминение']);
+        $deletePermission = \App\Models\Permission::factory()->create(['name' => 'delete', 'label' => 'Удаление']);
+        $uploadPermission = \App\Models\Permission::factory()->create(['name' => 'upload', 'label' => 'Загрузка файлов']);
 
 
+
+        ///// USER ROLES
         \App\Models\Role::factory()
             ->has(\App\Models\User::factory()->state(['login' => 'admin'])->count(1))
             ->hasAttached($newsResource,['permission_id' => $viewPermission->id])
             ->hasAttached($newsResource,['permission_id' => $createPermission->id])
             ->hasAttached($newsResource,['permission_id' => $updatePermission->id])
             ->hasAttached($newsResource,['permission_id' => $deletePermission->id])
+            ->hasAttached($newsResource,['permission_id' => $uploadPermission->id])
 
             ->hasAttached($newsCategoriesResource,['permission_id' => $viewPermission->id])
             ->hasAttached($newsCategoriesResource,['permission_id' => $createPermission->id])
@@ -41,6 +48,7 @@ class AdminAuthSeeder extends Seeder
             ->hasAttached($userResource,['permission_id' => $createPermission->id])
             ->hasAttached($userResource,['permission_id' => $updatePermission->id])
             ->hasAttached($userResource,['permission_id' => $deletePermission->id])
+            ->hasAttached($userResource,['permission_id' => $uploadPermission->id])
 
             ->hasAttached($roleResource,['permission_id' => $viewPermission->id])
             ->hasAttached($roleResource,['permission_id' => $createPermission->id])
@@ -70,9 +78,23 @@ class AdminAuthSeeder extends Seeder
             ->has(\App\Models\User::factory()->count(6),'users')
             ->create(['name' => 'User']);
 
+        \App\Models\Role::factory()
+            ->has(\App\Models\User::factory()->state([
+                'login' => 'HttpExceptionRobot',
+                'password' => null,
+            ]), 'users')
+            ->create(['name' => \App\Models\Role::HTTP_EXCEPTION_NAME]);
+
+        \App\Models\Role::factory()
+            ->has(\App\Models\User::factory()->state([
+                'login' => 'ErrorExceptionRobot',
+                'password' => null,
+            ]), 'users')
+            ->create(['name' => \App\Models\Role::ERROR_EXCEPTION_NAME]);
 
 
 
+        ///// ADMIN MENU
         $newsParent = \App\Models\Admin\Menu::factory()->create(['name' => 'Новости']);
         \App\Models\Admin\Menu::factory()
             ->for($newsParent, 'parents')

@@ -36,7 +36,9 @@ class HomeController extends Controller
 //       exit;
 
 
-        $user = User::find(1);
+
+        $user = User::find(100);
+        //$user->test;
 
         $categoryOne = NewsCategory::find(1);
         $categoryTwo = NewsCategory::find(2);

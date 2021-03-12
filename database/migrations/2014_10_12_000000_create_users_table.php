@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('role_id')->default(0);
             $table->string('login')->unique();
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->boolean('tfa')->default(false);
             $table->string('tfa_code')->nullable();
             $table->timestamps();

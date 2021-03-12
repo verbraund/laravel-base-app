@@ -13,10 +13,11 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Permission::factory()->create(['name' => 'view']);
-        \App\Models\Permission::factory()->create(['name' => 'create']);
-        \App\Models\Permission::factory()->create(['name' => 'update']);
-        \App\Models\Permission::factory()->create(['name' => 'delete']);
+        \App\Models\Permission::factory()->create(['name' => 'view', 'label' => 'Просмотр']);
+        \App\Models\Permission::factory()->create(['name' => 'create', 'label' => 'Создение']);
+        \App\Models\Permission::factory()->create(['name' => 'update', 'label' => 'Изминение']);
+        \App\Models\Permission::factory()->create(['name' => 'delete', 'label' => 'Удаление']);
+        \App\Models\Permission::factory()->create(['name' => 'upload', 'label' => 'Загрузка файлов']);
 
     }
 }

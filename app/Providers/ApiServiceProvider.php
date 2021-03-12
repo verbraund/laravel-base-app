@@ -19,6 +19,7 @@ class ApiServiceProvider extends ServiceProvider
 
         $this->app->bind(\App\Contracts\Api\Admin\Menu::class, \App\Services\Api\Admin\MenuService::class);
         $this->app->bind(\App\Contracts\Api\Media\User::class, \App\Services\Api\Media\UserService::class);
+        $this->app->bind(\App\Contracts\Api\Media\Role::class, \App\Services\Api\Media\RoleService::class);
 
         $this->app->bind(\App\Contracts\Api\Media\News::class, \App\Services\Api\Media\NewsService::class);
         $this->app->bind(\App\Contracts\Api\Media\NewsCategory::class, \App\Services\Api\Media\NewsCategoryService::class);

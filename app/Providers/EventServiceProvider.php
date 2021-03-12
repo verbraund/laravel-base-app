@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Events\ForgotTFACode;
+use App\Events\HappenedException;
+use App\Listeners\SendHttpExceptionNotification;
+use App\Listeners\SendErrorExceptionNotification;
 use App\Listeners\SendTFACodeNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -17,9 +20,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        ForgotTFACode::class => [
-            SendTFACodeNotification::class,
-        ],
+        ForgotTFACode::class => [ SendTFACodeNotification::class],
+        HappenedException::class => [
+            SendHttpExceptionNotification::class,
+            SendErrorExceptionNotification::class
+        ]
     ];
 
     /**

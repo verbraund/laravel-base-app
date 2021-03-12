@@ -13,10 +13,11 @@ class ResourceSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\News::class]);
-        \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\NewsCategory::class]);
-        \App\Models\Resource::factory()->create(['name' => \App\Models\User::class]);
-        \App\Models\Resource::factory()->create(['name' => \App\Models\Role::class]);
+
+        \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\News::class, 'label' => 'Новости']);
+        \App\Models\Resource::factory()->create(['name' => \App\Models\Media\News\NewsCategory::class, 'label' => 'Категории новостей']);
+        \App\Models\Resource::factory()->create(['name' => \App\Models\User::class, 'label' => 'Пользователи']);
+        \App\Models\Resource::factory()->create(['name' => \App\Models\Role::class, 'label' => 'Роли пользователей']);
 
     }
 }

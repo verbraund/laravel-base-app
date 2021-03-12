@@ -137,7 +137,7 @@ return [
 
     'allowed_ips' => env('AUTH_ALLOWED_IPS', ''),
     'key' => env('AUTH_KEY','default_string_key'),
-    'token_access_expire' => 30, //minute
-    'token_refresh_expire' => 240, //minute
+    'token_access_expire' => env('AUTH_ACCESS_TOKEN_EXPIRE',30), //minute
+    'token_refresh_expire' => env('AUTH_REFRESH_TOKEN_EXPIRE', 240), //minute
 
 ];

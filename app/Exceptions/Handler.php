@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Events\HappenedException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -33,5 +35,12 @@ class Handler extends ExceptionHandler
     public function register()
     {
         //
+    }
+
+    public function report(Throwable $e){
+        parent::report($e);
+        if(config('app.env') === 'production'){
+            HappenedException::dispatch($e);
+        }
     }
 }

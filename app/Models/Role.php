@@ -13,6 +13,8 @@ class Role extends Model
 
     const ADMIN_NAME = 'Admin';
     const SUPER_ADMIN_NAME = 'SuperAdmin';
+    const HTTP_EXCEPTION_NAME = 'HttpExceptionHandler';
+    const ERROR_EXCEPTION_NAME = 'ErrorExceptionHandler';
 
     protected $fillable = [
         'name',
@@ -49,5 +51,7 @@ class Role extends Model
     {
         return $this->name == self::ADMIN_NAME;
     }
+
+
 
 }
