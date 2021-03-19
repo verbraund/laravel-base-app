@@ -1,0 +1,43 @@
+.custom-loading
+    width: 100%
+    text-align: center
+    height: 100%
+    position: relative
+    .lds-ring
+        display: inline-block
+        //position: relative
+        width: 100px
+        height: 100px
+        position: absolute
+        top: 0
+        bottom: 0
+        margin-bottom: auto
+        margin-top: auto
+
+    .lds-ring div
+        box-sizing: border-box
+        display: block
+        position: absolute
+        width: 100px
+        height: 100px
+        margin: 8px
+        border: 8px solid #d473ff
+        border-radius: 50%
+        animation: lds-ring 0.6s cubic-bezier(0.5, 0, 0.5, 1) infinite
+        border-color: #e440ff transparent transparent transparent
+
+    .lds-ring div:nth-child(1)
+        animation-delay: -0.15s
+
+    .lds-ring div:nth-child(2)
+        animation-delay: -0.1s
+
+    .lds-ring div:nth-child(3)
+        animation-delay: -0.05s
+
+    @keyframes lds-ring
+        0%
+            transform: rotate(0deg)
+
+        100%
+            transform: rotate(360deg)
